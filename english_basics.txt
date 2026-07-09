@@ -1,0 +1,275 @@
+English: is the most spoken language globally
+Grammar: is the system of rules for using language
+Noun: is a word that names a person, place, or thing
+Verb: is a word that describes an action or state
+Adjective: is a word that describes or modifies a noun
+Adverb: is a word that modifies a verb, adjective, or another adverb
+Pronoun: is a word that replaces a noun (I, you, he, she, it, we, they)
+Preposition: is a word that shows the relationship between words (in, on, at, by, with)
+Conjunction: is a word that connects words or clauses (and, but, or, because)
+Sentence: is a complete thought with a subject and verb
+Subject: is who or what the sentence is about
+Predicate: is what the subject does or is
+Object: is the noun that receives the action of the verb
+Article: is a small word that precedes a noun (a, an, the)
+Tense: is the time of an action (past, present, future)
+Singular: means one
+Plural: means more than one
+Vowel: is a, e, i, o, u
+Consonant: is any letter that is not a vowel
+Punctuation: marks sentences (period, comma, question mark, exclamation point)
+Period: ends a sentence with a dot
+Comma: separates items in a list or clauses
+Question Mark: ends a question with ?
+Exclamation Point: shows strong emotion with !
+Apostrophe: shows ownership or missing letters (it's, don't)
+Quotation Marks: surround direct speech or quotes
+Dialogue: is a conversation between characters
+Paragraph: is a group of sentences about one topic
+Essay: is a piece of writing with multiple paragraphs
+Poetry: is writing that uses rhythm, rhyme, and imagery
+Metaphor: is a comparison between two unlike things without using "like" or "as"
+Simile: is a comparison using "like" or "as"
+Synonym: is a word with the same meaning as another word
+Antonym: is a word with the opposite meaning
+Homophone: is a word that sounds the same but has different meaning (to, two, too)
+Homograph: is a word spelled the same but has different meanings (bark: dog bark or tree bark)
+Prefix: is a word part added to the beginning of a word
+Suffix: is a word part added to the end of a word
+Root: is the main part of a word
+Phonics: is the relationship between letters and sounds
+Vowel Sound: is the sound a vowel makes in a word
+Consonant Blend: is two consonants together (bl, st, gr)
+Digraph: is two letters that make one sound (ch, sh, th, wh)
+Syllable: is a unit of sound in a word
+Stress: is the emphasis on a syllable in a word
+Accent: is a way of pronouncing words from a region or country
+Dialect: is a variation of a language used by a group
+Slang: is informal language used by a group
+Idiom: is a phrase with a meaning different from its individual words (raining cats and dogs)
+Colloquialism: is casual, conversational language
+Formal: means official or proper language
+Informal: means casual or relaxed language
+Passive Voice: is when the object receives the action (The cake was eaten by John)
+Active Voice: is when the subject performs the action (John ate the cake)
+Clause: is a group of words with a subject and verb
+Independent Clause: can stand alone as a sentence
+Dependent Clause: cannot stand alone and needs an independent clause
+Simple Sentence: has one independent clause
+Compound Sentence: has two independent clauses joined by a conjunction
+Complex Sentence: has an independent clause and a dependent clause
+Vocabulary: is the collection of words in a language
+Definition: is the meaning of a word
+Context: is the words around a word that help explain its meaning
+Connotation: is the feeling or idea a word suggests
+Denotation: is the literal meaning of a word
+Abstract: means not physical (love, freedom, justice)
+Concrete: means physical and tangible (apple, table, car)
+Alliteration: is repetition of beginning sounds (Peter Piper picked a peck of peppers)
+Onomatopoeia: is a word that imitates a sound (buzz, hiss, splash)
+Personification: is giving human qualities to non-human things
+Hyperbole: is extreme exaggeration for effect
+Irony: is when the meaning is the opposite of what is said
+Pun: is a play on words for humor
+Rhyme: is when words have the same ending sound
+Rhythm: is the pattern of stressed and unstressed syllables
+Meter: is the pattern of syllables in poetry
+Stanza: is a group of lines in poetry
+Line: is a single row of words in poetry
+Verse: is poetry or a single line of poetry
+Prose: is ordinary written language that is not poetry
+Character: is a person in a story
+Plot: is the sequence of events in a story
+Setting: is the place and time of a story
+Theme: is the main idea or message of a story
+Conflict: is a problem or struggle in a story
+Resolution: is how the conflict is solved
+Climax: is the most exciting part of a story
+Narrator: is the person telling a story
+Point of View: is whose perspective the story is told from
+Fiction: is a made-up story
+Non-fiction: is a true story based on facts
+Biography: is a true story about someone's life
+Autobiography: is a true story written by the person about their own life
+Fable: is a short story with a moral lesson
+Legend: is a story about a real or imaginary person that is believed to be true
+Myth: is a story about gods or supernatural beings
+Fairy Tale: is a magical story often with a happy ending
+Novel: is a long fictional story
+Short Story: is a brief fictional story
+Drama: is a story written to be performed
+Comedy: is a funny play or story
+Tragedy: is a serious play or story with an unhappy ending
+Author: is the person who writes
+Illustrator: is the person who draws pictures
+Publisher: is the company that prints and sells books
+Editor: is a person who checks and improves writing
+Audience: is the people reading or listening
+Tone: is the attitude of the writer toward the subject
+Mood: is the feeling created in the reader
+Style: is the unique way a writer writes
+Handwriting: is writing done by hand
+Cursive: is handwriting where letters are connected
+Print: is writing where letters are separate
+Typing: is writing using a keyboard
+Spelling: is putting letters in the correct order
+Capitalization: is using uppercase letters at the start of sentences and names
+Indentation: is spacing at the beginning of a paragraph
+Margin: is the empty space at the edge of a page
+Font: is a style of printed letters
+Bold: is thick dark text
+Italic: is slanted text
+Underline: is a line under text
+Brainstorm: is creating many ideas quickly
+Outline: is a plan for writing
+Draft: is the first version of writing
+Revision: is improving writing
+Edit: is correcting errors in writing
+Publish: is sharing writing with others
+Literacy: is the ability to read and write
+Fluency: is reading smoothly and quickly
+Comprehension: is understanding what you read
+Inference: is figuring out something not directly stated
+Summary: is a short version of the main ideas
+Paraphrase: is rewriting something in your own words
+Quote: is the exact words from a text
+Citation: is crediting the source of information
+Bibliography: is a list of sources used in writing
+Footnote: is a note at the bottom of a page
+Reference: is information about a source
+Appendix: is extra information at the end of a book
+Glossary: is a list of words and definitions
+Index: is a list of topics and page numbers in a book
+Table of Contents: is a list of chapters and pages
+Introduction: is the beginning of a book or essay
+Conclusion: is the ending of a book or essay
+Thesis: is the main point or argument
+Evidence: is facts or examples that support a point
+Argument: is a position defended with reasons
+Persuade: is to convince someone to believe something
+Inform: is to give information
+Entertain: is to amuse or engage
+Describe: is to explain what something is like
+Narrate: is to tell a story
+Compare: is to show how things are alike
+Contrast: is to show how things are different
+Analyze: is to break something into parts to understand it
+Evaluate: is to judge the value or quality of something
+Critical: means judging carefully with analysis
+Creative: means using imagination and originality
+Academic: means related to school or formal study
+Technical: means related to specific knowledge or skills
+Standard: means following usual rules or practices
+Nonstandard: means not following usual rules or practices
+Register: is the level of formality in language (formal, informal, slang)
+Code-Switching: is changing between different languages or registers
+Bilingual: is using or knowing two languages
+Multilingual: is using or knowing many languages
+Translation: is changing words from one language to another
+Interpretation: is explaining the meaning of something
+Linguistics: is the study of language
+Grammar: is the system of rules for using language correctly
+Semantics: is the study of word meanings
+Pragmatics: is the study of how language is used in context
+Phonetics: is the study of speech sounds
+Phonology: is the study of sound systems in languages
+Morphology: is the study of word structure
+Syntax: is the study of sentence structure
+Vocabulary Development: is learning new words
+Word Recognition: is identifying written words
+Decoding: is figuring out how to pronounce a word
+Encoding: is spelling a word correctly
+Sight Words: are common words recognized instantly (the, and, is)
+High-Frequency Words: are words used often in reading and writing
+Content Words: are words that carry main meaning (nouns, verbs, adjectives)
+Function Words: are words that show relationships (articles, prepositions, conjunctions)
+Lexicon: is the total set of words in a language or person's vocabulary
+Jargon: is specialized vocabulary used in a profession or group
+Terminology: is the specialized words used in a field
+Abbreviation: is a shortened form of a word
+Acronym: is a word formed from the first letters of other words (NASA, SCUBA)
+Contraction: is a shortened form combining two words (don't, can't, it's)
+Compound Word: is a word made from two or more words (basketball, notebook)
+Derived Word: is a word made by adding prefixes or suffixes
+Word Family: is a group of words with the same root
+Cognate: is a word that looks similar in different languages
+Loanword: is a word borrowed from another language
+Native Speaker: is someone who learned a language from birth
+Non-Native Speaker: is someone who learned a language as an adult
+Language Learner: is someone actively learning a language
+Fluent: means able to speak smoothly and naturally
+Proficient: means able to use a language at a high level
+Beginner: means just starting to learn a language
+Intermediate: means at a middle level of language ability
+Advanced: means at a high level of language ability
+Immersion: is learning a language by being surrounded by it
+Translation Method: is learning through direct translation
+Communicative Method: is learning by practicing communication
+Natural Method: is learning like a child learns naturally
+Grammar-Based Method: is learning by studying grammar rules
+Conversation: is talking between two or more people
+Discussion: is talking about a topic in depth
+Debate: is an organized argument between two sides
+Interview: is asking someone questions for information
+Presentation: is speaking to an audience
+Public Speaking: is giving a speech to a group
+Listening: is hearing and understanding sounds and words
+Speaking: is producing words and sounds
+Reading: is understanding written words
+Writing: is producing written words
+Receptive Skills: are listening and reading
+Productive Skills: are speaking and writing
+Communication: is sharing information and ideas
+Interaction: is exchanging information between people
+Expression: is showing thoughts and feelings
+Understanding: is comprehending meaning
+Misunderstanding: is not understanding correctly
+Clarification: is making something clearer
+Feedback: is information about how someone is doing
+Error: is a mistake in language
+Mistake: is an unintentional error
+Correction: is fixing an error
+Standard English: is the correct form of English taught in schools
+Nonstandard English: is English that does not follow standard rules
+Black English: is a dialect of English spoken by African Americans
+Ebonics: is African American Vernacular English (AAVE)
+Regional Dialect: is language variation in a geographic area
+Accent: is a distinctive way of pronouncing words
+Articulation: is making clear speech sounds
+Pronunciation: is saying words correctly
+Intonation: is the rise and fall of pitch in speech
+Stress: is emphasis on a syllable or word
+Pause: is a stop in speech
+Pacing: is the speed of speech
+Volume: is the loudness of speech
+Clarity: is the quality of being clear and easy to understand
+Enunciation: is speaking clearly and distinctly
+Intelligibility: is how well speech can be understood
+Dialect: is a form of language used by a group
+Sociolect: is the language of a social group
+Idiolect: is the unique speech of an individual
+Register: is the formality level of language
+Politeness: is respectful language choices
+Politeness Strategies: are ways to be respectful in language
+Face-Saving: is protecting someone's dignity in communication
+Directness: is stating something clearly
+Indirectness: is suggesting something without stating it clearly
+Tactfulness: is speaking in a sensitive way
+Rudeness: is impolite or disrespectful language
+Courtesy: is polite respectful behavior in language
+Etiquette: is proper manners in communication
+Email Etiquette: is proper manners in email communication
+Texting Language: is informal abbreviated language in text messages
+Netiquette: is proper behavior on the internet
+Emoticon: is a symbol showing emotion (:) or :) )
+Emoji: is a small picture representing emotion or idea
+Hashtag: is a word or phrase preceded by # on social media
+Meme: is an idea or image that spreads on the internet
+Viral: means spreading quickly online
+Trending: means popular and widely discussed
+Hashtag: is a word with # used to categorize social media posts
+Mention: is referring to someone using @ on social media
+Retweet: is sharing someone else's post on Twitter
+Like: is clicking a heart or thumbs up on social media
+Comment: is writing a response to a post
+Share: is posting something online
