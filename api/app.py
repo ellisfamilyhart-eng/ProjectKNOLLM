@@ -125,7 +125,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <div style="padding:12px 16px 4px;border-bottom:2px solid #667eea;flex-shrink:0;display:flex;align-items:center;gap:8px">
       <span style="font-size:20px">🧠</span>
       <span style="font-size:18px;font-weight:700;color:#667eea">Jarvix NoLLM</span>
-      <span style="font-size:12px;color:#aaa;margin-left:4px">v5.1</span>
+      <span style="font-size:12px;color:#aaa;margin-left:4px">v5.1 (Degraded Mode)</span>
     </div>
     <div class="tabs">
       <div class="tab active" onclick="switchTab('chat',this)">💬 Chat</div>
@@ -140,33 +140,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
     <div class="tab-pane" id="pane-crawler">
       <div class="crawl-body">
-        <div class="crawl-form">
-          <div class="crawl-row">
-            <label>URL</label>
-            <input type="text" id="crawl-url" placeholder="https://en.wikipedia.org/wiki/Machine_learning">
-          </div>
-          <div class="crawl-row">
-            <label>Depth</label>
-            <select id="crawl-depth">
-              <option value="0">0 — single page</option>
-              <option value="1" selected>1 — page + links</option>
-              <option value="2">2 — two hops</option>
-            </select>
-          </div>
-          <div class="crawl-row">
-            <label>Max pages</label>
-            <select id="crawl-pages">
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="8" selected>8</option>
-              <option value="12">12</option>
-              <option value="15">15</option>
-            </select>
-          </div>
-          <button class="btn-green" id="btn-crawl" onclick="startCrawl()">🌐 Crawl &amp; Learn</button>
+        <div style="padding:20px;text-align:center;color:#e74c3c">
+          <p style="font-size:16px;font-weight:bold;margin-bottom:10px">⚠️ Web Crawler Unavailable</p>
+          <p style="font-size:13px;color:#888">The web crawler requires Jarvix, which is not available in this deployment.</p>
+          <p style="font-size:12px;color:#aaa;margin-top:15px">Run this app locally to use full features.</p>
         </div>
-        <div class="crawl-progress" id="crawl-progress">⏳ Crawling… this may take a few seconds.</div>
-        <div id="eval-output"></div>
       </div>
     </div>
   </div>
@@ -272,54 +250,10 @@ function doForget() {
   if (!confirm('Erase ALL memories?')) return;
   fetch('/api/forget', {method:'POST'}).then(r=>r.json()).then(d => {if (d.success) {sysMsg('🔄 ' + d.message);refreshStats();updateMemory();}});
 }
-function startCrawl() {
-  const url = document.getElementById('crawl-url').value.trim();
-  const depth = parseInt(document.getElementById('crawl-depth').value);
-  const pages = parseInt(document.getElementById('crawl-pages').value);
-  if (!url) {alert('Paste a URL first.');return;}
-  if (!url.startsWith('http')) {alert('URL must start with http:// or https://');return;}
-  const btn = document.getElementById('btn-crawl');
-  const progress = document.getElementById('crawl-progress');
-  const output = document.getElementById('eval-output');
-  btn.disabled = true;
-  btn.textContent = '⏳ Crawling…';
-  progress.style.display = 'block';
-  output.innerHTML = '';
-  fetch('/api/crawl', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url,depth,max_pages:pages})}).then(r=>r.json()).then(d => {
-    if (!d.success) {output.innerHTML=`<div style="color:#e74c3c;padding:10px">${escHtml(d.error)}</div>`;return;}
-    renderEval(d.evaluation);
-    refreshStats();
-    updateMemory();
-  }).catch(e => {output.innerHTML=`<div style="color:#e74c3c;padding:10px">Error: ${escHtml(e.message)}</div>`}).finally(() => {btn.disabled=false;btn.textContent='🌐 Crawl & Learn';progress.style.display='none';});
-}
-function renderEval(ev) {
-  const s = ev.summary;
-  const qClass = {'A':'qa','B':'qb','C':'qc','D':'qd','F':'qf'};
-  const letter = (s.quality_score || 'F').charAt(0);
-  const qcls = qClass[letter] || 'qf';
-  let html = `<div class="eval-section"><h3>Crawl Summary</h3><div class="quality-badge ${qcls}">${s.quality_score}</div><div class="eval-grid"><div class="eval-card"><div class="ev-label">Pages visited</div><div class="ev-val">${s.pages_visited}</div></div><div class="eval-card"><div class="ev-label">Facts stored</div><div class="ev-val">${s.facts_stored}</div></div><div class="eval-card"><div class="ev-label">Duplicates</div><div class="ev-val">${s.duplicates}</div></div><div class="eval-card"><div class="ev-label">Knowledge gain</div><div class="ev-val">+${s.knowledge_gain}%</div></div><div class="eval-card"><div class="ev-label">Words read</div><div class="ev-val">${s.total_words.toLocaleString()}</div></div><div class="eval-card"><div class="ev-label">Time</div><div class="ev-val">${s.elapsed_ms}ms</div></div></div></div>`;
-  if (ev.top_topics && ev.top_topics.length) {
-    html += `<div class="eval-section"><h3>Top Topics Learned</h3>`;
-    for (const t of ev.top_topics.slice(0,8)) {html += `<span style="display:inline-block;background:#e8eaf6;color:#3949ab;border-radius:20px;padding:3px 10px;font-size:12px;margin:2px">${escHtml(t)}</span>`;}
-    html += '</div>';
-  }
-  if (ev.top_facts && ev.top_facts.length) {
-    html += `<div class="eval-section"><h3>Sample Facts Learned</h3><div class="fact-list">`;
-    for (const f of ev.top_facts.slice(0,12)) {html += `<div class="fl-row"><span class="fl-subj">${escHtml(f.subject)}</span><span class="fl-rel">${escHtml(f.relation)}</span><span class="fl-obj">${escHtml(f.object)}</span><span class="fl-conf">${Math.round(f.confidence*100)}%</span></div>`;}
-    html += '</div></div>';
-  }
-  if (ev.page_results && ev.page_results.length) {
-    html += `<div class="eval-section"><h3>Pages</h3>`;
-    for (const p of ev.page_results) {html += `<div class="page-item"><div class="page-title" title="${escHtml(p.url)}">${escHtml(p.title || p.url)}</div><div class="page-meta">${p.stored} stored · ${p.skipped} dup · ${p.words} words · ${p.ms}ms ${p.top_topics.length ? ' · ' + p.top_topics.slice(0,3).map(escHtml).join(', ') : ''}</div>${p.error ? `<div class="page-error">Error: ${escHtml(p.error)}</div>` : ''}</div>`;}
-    html += '</div>';
-  }
-  if (ev.inference_note) {html += `<div class="infer-note">🔗 ${escHtml(ev.inference_note)}</div>`;}
-  document.getElementById('eval-output').innerHTML = html;
-}
 window.addEventListener('load', () => {
   refreshStats();
   updateMemory();
-  sysMsg("Hello! I'm Jarvix — a self-learning AI.\\nChat: teach me facts, ask questions, or type /help for commands.\\nWeb Crawler: paste a URL in the Crawler tab to learn from any page.");
+  sysMsg("Hello! I'm Jarvix — a self-learning AI.\\nChat: teach me facts, ask questions, or type /help for commands.\\nNote: Running in degraded mode on Vercel (AI features unavailable).");
 });
 setInterval(refreshStats, 6000);
 setInterval(updateMemory, 6000);
@@ -333,7 +267,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 logger.info(f"BASE_DIR: {BASE_DIR}")
 logger.info(f"DATA_DIR: {DATA_DIR}")
-logger.info("✓ Flask app initialized with embedded HTML")
+logger.info("✓ Flask app initialized with embedded HTML (Degraded Mode)")
 
 # Try to import Jarvix but don't crash if it fails
 jarvix_available = False
@@ -381,57 +315,34 @@ def index():
 def health():
     """Health check"""
     return jsonify({
-        'status': 'ok' if jarvix_available else 'degraded',
+        'status': 'degraded',
         'service': 'jarvix-v2',
         'version': '2.0.0',
+        'mode': 'degraded',
         'jarvix_available': jarvix_available,
-        'message': 'Jarvix is fully operational' if jarvix_available else 'Jarvix not loaded - see logs'
+        'message': 'Running in degraded mode on Vercel'
     })
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
-    """Chat endpoint"""
-    if not jarvix_available:
-        return jsonify({'error': 'Jarvix not available in this deployment'}), 503
-    try:
-        data = request.json or {}
-        msg = data.get('message', '').strip()
-        if not msg:
-            return jsonify({'error': 'Empty message'}), 400
-        agent = get_agent()
-        response = agent.process_input(msg)
-        return jsonify({
-            'success': True,
-            'response': response,
-            'mood': 'curious',
-            'total_interactions': 0,
-        })
-    except Exception as e:
-        logger.error(f"Chat error: {e}", exc_info=True)
-        return jsonify({'error': str(e)}), 500
+    """Chat endpoint - unavailable in degraded mode"""
+    return jsonify({
+        'success': False,
+        'error': 'Chat not available - Jarvix not loaded in Vercel deployment'
+    }), 503
 
 @app.route('/api/stats', methods=['GET'])
 def stats():
     """Stats endpoint"""
-    if not jarvix_available:
-        return jsonify({
-            'success': True,
-            'stats': {
-                'total_interactions': 0,
-                'topics_known': 0,
-                'total_facts': 0,
-                'mood': 'curious'
-            }
-        })
-    try:
-        agent = get_agent()
-        return jsonify({
-            'success': True,
-            'stats': agent.get_stats() if hasattr(agent, 'get_stats') else {}
-        })
-    except Exception as e:
-        logger.error(f"Stats error: {e}", exc_info=True)
-        return jsonify({'error': str(e)}), 500
+    return jsonify({
+        'success': True,
+        'stats': {
+            'total_interactions': 0,
+            'topics_known': 0,
+            'total_facts': 0,
+            'mood': 'curious'
+        }
+    })
 
 @app.route('/api/memory', methods=['GET'])
 def memory():
@@ -454,7 +365,7 @@ def thoughts():
 @app.route('/api/forget', methods=['POST'])
 def forget():
     """Forget endpoint"""
-    return jsonify({'success': True, 'message': 'All memories erased.'})
+    return jsonify({'success': True, 'message': 'All memories cleared.'})
 
 @app.route('/api/imagine', methods=['GET'])
 def imagine():
@@ -473,45 +384,8 @@ def graph_data():
 
 @app.route('/api/crawl', methods=['POST'])
 def crawl():
-    """Web crawler endpoint - degraded mode on Vercel"""
-    if not jarvix_available:
-        return jsonify({
-            'success': False,
-            'error': 'Web crawler not available - Jarvix not loaded in this deployment'
-        }), 503
-    
-    try:
-        data = request.json or {}
-        url = data.get('url', '').strip()
-        depth = data.get('depth', 0)
-        max_pages = data.get('max_pages', 5)
-        
-        if not url:
-            return jsonify({'success': False, 'error': 'URL required'}), 400
-        
-        agent = get_agent()
-        from jarvix.web_crawler import WebCrawler
-        
-        crawler = WebCrawler(
-            agent=agent,
-            max_depth=min(depth, 2),
-            max_pages=min(max_pages, 20),
-            timeout_s=8,
-            same_domain_only=True,
-            request_delay_s=0.5
-        )
-        
-        report = crawler.crawl(url)
-        evaluation = crawler.build_evaluation(report)
-        
-        return jsonify({
-            'success': True,
-            'evaluation': evaluation
-        })
-        
-    except Exception as e:
-        logger.error(f"Crawl error: {e}", exc_info=True)
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
+    """Web crawler endpoint - unavailable in degraded mode"""
+    return jsonify({
+        'success': False,
+        'error': 'Web crawler not available in Vercel deployment. Run locally to use.'
+    }), 503
