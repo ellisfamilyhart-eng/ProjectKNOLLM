@@ -1,18 +1,10 @@
 {
   "buildCommand": "pip install -r requirements.txt",
   "outputDirectory": ".",
-  "functions": {
-    "app.py": {
-      "runtime": "python3.9",
-      "environment": {
-        "PYTHONUNBUFFERED": "1"
-      }
-    }
-  },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "app.py"
+      "source": "/(.*)",
+      "destination": "/api/app.py"
     }
   ]
 }
