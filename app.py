@@ -8,8 +8,11 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import os
 from collections import defaultdict
+import sys
+import traceback
 
 def create_app():
+    """Create and configure the Flask application."""
     app = Flask(__name__, template_folder='/app/templates')
     CORS(app)
 
@@ -19,10 +22,14 @@ def create_app():
         nonlocal agent
         if agent is None:
             # Lazy import to avoid issues during build
-            from jarvix import Jarvix
-            from jarvix.config import STORAGE_CONFIG
-            data_file = os.environ.get('JARVIX_DATA_FILE', '/app/data/jarvix_v2_memory.json')
-            agent = Jarvix(data_file=data_file)
+            try:
+                from jarvix import Jarvix
+                data_file = os.environ.get('JARVIX_DATA_FILE', '/app/data/jarvix_v2_memory.json')
+                agent = Jarvix(data_file=data_file)
+            except Exception as init_error:
+                print(f"Warning: Failed to initialize Jarvix agent: {init_error}", file=sys.stderr)
+                traceback.print_exc(file=sys.stderr)
+                return None
         return agent
 
     @app.route('/')
@@ -42,6 +49,8 @@ def create_app():
         
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             response = agent.process_input(user_input)
             
             return jsonify({
@@ -58,6 +67,8 @@ def create_app():
         """Get agent statistics"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             return jsonify({
                 'success': True,
                 'stats': agent.get_stats(),
@@ -70,6 +81,8 @@ def create_app():
         """Get agent memory"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             
             memory_data = {}
             for topic, facts in agent.memory.facts.items():
@@ -93,6 +106,8 @@ def create_app():
         """Clear all memories"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             agent.clear_memory()
             
             return jsonify({
@@ -113,6 +128,8 @@ def create_app():
         
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             results = []
             
             for fact in facts:
@@ -146,6 +163,8 @@ def create_app():
         
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             
             if not agent.question_answerer.is_question(question):
                 question += "?"  # Ensure it's recognized as question
@@ -177,6 +196,8 @@ def create_app():
         
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             response = agent.learn_from_url(url)
             stats = agent.get_stats()
             
@@ -199,6 +220,8 @@ def create_app():
         
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             response = agent.learn_from_text(text)
             stats = agent.get_stats()
             
@@ -221,6 +244,8 @@ def create_app():
         
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             analysis = agent.recursive_learner.analyze_text(text)
             
             return jsonify({
@@ -237,6 +262,8 @@ def create_app():
         """Generate imaginative thoughts"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             topic = request.args.get('topic', None)
             
             imagination = agent.imagine(topic)
@@ -253,6 +280,8 @@ def create_app():
         """Generate theories"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             topic = request.args.get('topic', None)
             
             theory = agent.theorize(topic)
@@ -269,6 +298,8 @@ def create_app():
         """Find analogies"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             topic1 = request.args.get('topic1', None)
             topic2 = request.args.get('topic2', None)
             
@@ -291,6 +322,8 @@ def create_app():
         """Get agent personality"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             personality = agent.get_personality()
             
             return jsonify({
@@ -305,6 +338,8 @@ def create_app():
         """Get autonomous thoughts"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             thought = agent.autonomous_thought()
             
             return jsonify({
@@ -319,6 +354,8 @@ def create_app():
         """Get conversation history"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             limit = request.args.get('limit', 20, type=int)
             
             recent_history = agent.memory.conversation_history[-limit:]
@@ -336,6 +373,8 @@ def create_app():
         """Analyze a topic"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             analysis = agent.analyze_topic(topic)
             
             return jsonify({
@@ -350,6 +389,8 @@ def create_app():
         """Export all knowledge"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             exported = agent.export_memory()
             
             return jsonify({
@@ -374,6 +415,8 @@ def create_app():
 
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             from jarvix.web_crawler import WebCrawler
             crawler = WebCrawler(agent,
                                  max_depth=min(depth, 2),
@@ -390,6 +433,8 @@ def create_app():
         """Return knowledge graph as nodes + edges for 2D visualisation"""
         try:
             agent = get_agent()
+            if not agent:
+                return jsonify({'error': 'Agent not available'}), 503
             g     = agent.brain.graph
 
             # Build colour map by relation type
@@ -449,16 +494,8 @@ def create_app():
 
     return app
 
-# Create app at module level for Vercel
-try:
-    app = create_app()
-except Exception as e:
-    # Fallback: create a minimal app if full initialization fails
-    app = Flask(__name__)
-    
-    @app.route('/api/health', methods=['GET'])
-    def health():
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+# Create app at module level for Vercel (Flask app must exist at import time)
+app = create_app()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
