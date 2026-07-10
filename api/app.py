@@ -470,3 +470,48 @@ def graph_data():
         'edges': [],
         'stats': {'nodes': 0, 'edges': 0, 'inferred': 0}
     })
+
+@app.route('/api/crawl', methods=['POST'])
+def crawl():
+    """Web crawler endpoint - degraded mode on Vercel"""
+    if not jarvix_available:
+        return jsonify({
+            'success': False,
+            'error': 'Web crawler not available - Jarvix not loaded in this deployment'
+        }), 503
+    
+    try:
+        data = request.json or {}
+        url = data.get('url', '').strip()
+        depth = data.get('depth', 0)
+        max_pages = data.get('max_pages', 5)
+        
+        if not url:
+            return jsonify({'success': False, 'error': 'URL required'}), 400
+        
+        agent = get_agent()
+        from jarvix.web_crawler import WebCrawler
+        
+        crawler = WebCrawler(
+            agent=agent,
+            max_depth=min(depth, 2),
+            max_pages=min(max_pages, 20),
+            timeout_s=8,
+            same_domain_only=True,
+            request_delay_s=0.5
+        )
+        
+        report = crawler.crawl(url)
+        evaluation = crawler.build_evaluation(report)
+        
+        return jsonify({
+            'success': True,
+            'evaluation': evaluation
+        })
+        
+    except Exception as e:
+        logger.error(f"Crawl error: {e}", exc_info=True)
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
