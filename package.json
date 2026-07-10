@@ -1,21 +1,11 @@
 {
-  "name": "jarvix-nollm",
-  "version": "5.1.0",
+  "name": "project-nollm",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "server": "node server/index.js"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0",
-    "cors": "^2.8.6",
-    "express": "^4.21.0",
-    "jsdom": "^25.0.0"
-  },
-  "devDependencies": {
-    "vite": "^5.4.0"
+    "predev": "python -m pip install -r requirements.txt",
+    "dev": "python app.py",
+    "prestart": "python -m pip install -r requirements.txt",
+    "start": "python app.py"
   }
 }

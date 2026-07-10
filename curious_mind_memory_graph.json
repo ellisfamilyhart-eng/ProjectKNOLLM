@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "jarvix": {
+      "node_type": "self",
+      "properties": {},
+      "aliases": []
+    },
+    "read": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "understand text": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "learn facts": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "remember": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "reason": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "answer questions": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "make mistakes": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "see images": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "hear audio": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "feel emotions": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "access internet": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    }
+  },
+  "edges": [
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "read",
+      "confidence": 0.95,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "understand text",
+      "confidence": 0.9,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "learn facts",
+      "confidence": 0.99,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "remember",
+      "confidence": 0.99,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "reason",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "answer questions",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "make mistakes",
+      "confidence": 0.7,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "see images",
+      "confidence": 0.9,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "hear audio",
+      "confidence": 0.9,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "feel emotions",
+      "confidence": 0.6,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "access internet",
+      "confidence": 0.95,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    }
+  ]
+}
