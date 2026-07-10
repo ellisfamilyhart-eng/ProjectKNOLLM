@@ -7,37 +7,84 @@ REST API with imagination, conversation, web learning, and Q&A
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import os
+import sys
+import logging
 from collections import defaultdict
 
-# Import modular Jarvix v2.0
-from jarvix import Jarvix, InputParser, ResponseGenerator
-from jarvix.config import STORAGE_CONFIG
+# Setup logging for Vercel
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    stream=sys.stdout
+)
+logger = logging.getLogger(__name__)
 
-# Override data file
-STORAGE_CONFIG['data_file'] = '/app/data/jarvix_v2_memory.json'
+# Import modular Jarvix v2.0
+try:
+    from jarvix import Jarvix, InputParser, ResponseGenerator
+    from jarvix.config import STORAGE_CONFIG
+    logger.info("✓ Successfully imported Jarvix modules")
+except Exception as e:
+    logger.error(f"✗ Failed to import Jarvix: {e}", exc_info=True)
+    raise
 
 def create_app():
-    app = Flask(__name__, template_folder='/app/templates')
+    """Create and configure Flask app for Vercel"""
+    
+    # Get the directory where app.py is located
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    
+    # Use relative paths
+    TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+    DATA_DIR = os.path.join(BASE_DIR, 'data')
+    
+    # Create data directory if it doesn't exist
+    os.makedirs(DATA_DIR, exist_ok=True)
+    
+    # Set storage config with relative path
+    STORAGE_CONFIG['data_file'] = os.path.join(DATA_DIR, 'jarvix_v2_memory.json')
+    
+    logger.info(f"BASE_DIR: {BASE_DIR}")
+    logger.info(f"TEMPLATE_DIR: {TEMPLATE_DIR}")
+    logger.info(f"DATA_DIR: {DATA_DIR}")
+    logger.info(f"Storage file: {STORAGE_CONFIG['data_file']}")
+    
+    app = Flask(__name__, template_folder=TEMPLATE_DIR)
     CORS(app)
+    
+    # Enable detailed error reporting
+    app.config['PROPAGATE_EXCEPTIONS'] = True
 
     agent = None
 
     def get_agent():
+        """Lazily initialize the Jarvix agent"""
         nonlocal agent
         if agent is None:
-            agent = Jarvix(data_file=STORAGE_CONFIG['data_file'])
+            try:
+                logger.info("Initializing Jarvix agent...")
+                agent = Jarvix(data_file=STORAGE_CONFIG['data_file'])
+                logger.info("✓ Jarvix agent initialized successfully")
+            except Exception as e:
+                logger.error(f"✗ Failed to initialize Jarvix agent: {e}", exc_info=True)
+                raise
         return agent
 
     @app.route('/')
     def index():
-        return render_template('index.html')
+        """Serve the main HTML interface"""
+        try:
+            return render_template('index.html')
+        except Exception as e:
+            logger.error(f"Error rendering index.html: {e}", exc_info=True)
+            return jsonify({'error': 'Failed to load interface', 'details': str(e)}), 500
 
     # ========== CORE CHAT & LEARNING ==========
 
     @app.route('/api/chat', methods=['POST'])
     def chat():
         """Process user message"""
-        data = request.json
+        data = request.json or {}
         user_input = data.get('message', '').strip()
         
         if not user_input:
@@ -54,6 +101,7 @@ def create_app():
                 'total_interactions': agent.memory.total_interactions,
             })
         except Exception as e:
+            logger.error(f"Error in /api/chat: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/stats', methods=['GET'])
@@ -66,6 +114,7 @@ def create_app():
                 'stats': agent.get_stats(),
             })
         except Exception as e:
+            logger.error(f"Error in /api/stats: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/memory', methods=['GET'])
@@ -89,6 +138,7 @@ def create_app():
                 'total_facts': sum(len(f) for f in agent.memory.facts.values()),
             })
         except Exception as e:
+            logger.error(f"Error in /api/memory: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/forget', methods=['POST'])
@@ -103,12 +153,13 @@ def create_app():
                 'message': 'All memories erased. I am reborn!'
             })
         except Exception as e:
+            logger.error(f"Error in /api/forget: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/bulk-teach', methods=['POST'])
     def bulk_teach():
         """Bulk teach multiple facts"""
-        data = request.json
+        data = request.json or {}
         facts = data.get('facts', [])
         
         if not isinstance(facts, list) or not facts:
@@ -134,6 +185,7 @@ def create_app():
                 'stats': agent.get_stats()
             })
         except Exception as e:
+            logger.error(f"Error in /api/bulk-teach: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     # ========== QUESTION ANSWERING ==========
@@ -141,7 +193,7 @@ def create_app():
     @app.route('/api/ask', methods=['POST'])
     def ask():
         """Answer a question"""
-        data = request.json
+        data = request.json or {}
         question = data.get('question', '').strip()
         
         if not question:
@@ -165,6 +217,7 @@ def create_app():
                 'confidence': round(confidence, 2),
             })
         except Exception as e:
+            logger.error(f"Error in /api/ask: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     # ========== WEB LEARNING ==========
@@ -172,7 +225,7 @@ def create_app():
     @app.route('/api/learn-url', methods=['POST'])
     def learn_url():
         """Learn from a web page"""
-        data = request.json
+        data = request.json or {}
         url = data.get('url', '').strip()
         
         if not url:
@@ -189,12 +242,13 @@ def create_app():
                 'stats': stats,
             })
         except Exception as e:
+            logger.error(f"Error in /api/learn-url: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/learn-text', methods=['POST'])
     def learn_text():
         """Learn from raw text"""
-        data = request.json
+        data = request.json or {}
         text = data.get('text', '').strip()
         
         if not text:
@@ -211,12 +265,13 @@ def create_app():
                 'stats': stats,
             })
         except Exception as e:
+            logger.error(f"Error in /api/learn-text: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/analyze-text', methods=['POST'])
     def analyze_text():
         """Analyze text for facts"""
-        data = request.json
+        data = request.json or {}
         text = data.get('text', '').strip()
         
         if not text:
@@ -231,6 +286,7 @@ def create_app():
                 'analysis': analysis,
             })
         except Exception as e:
+            logger.error(f"Error in /api/analyze-text: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     # ========== IMAGINATION & CREATIVITY ==========
@@ -249,6 +305,7 @@ def create_app():
                 'imagination': imagination,
             })
         except Exception as e:
+            logger.error(f"Error in /api/imagine: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/theorize', methods=['GET'])
@@ -265,6 +322,7 @@ def create_app():
                 'theory': theory,
             })
         except Exception as e:
+            logger.error(f"Error in /api/theorize: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/analogies', methods=['GET'])
@@ -285,6 +343,7 @@ def create_app():
                 'analogies': analogs,
             })
         except Exception as e:
+            logger.error(f"Error in /api/analogies: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     # ========== CONVERSATION & PERSONALITY ==========
@@ -301,6 +360,7 @@ def create_app():
                 'personality': personality,
             })
         except Exception as e:
+            logger.error(f"Error in /api/personality: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/thoughts', methods=['GET'])
@@ -315,6 +375,7 @@ def create_app():
                 'thought': thought or 'I have nothing to contemplate right now...'
             })
         except Exception as e:
+            logger.error(f"Error in /api/thoughts: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/history', methods=['GET'])
@@ -332,6 +393,7 @@ def create_app():
                 'total': len(agent.memory.conversation_history),
             })
         except Exception as e:
+            logger.error(f"Error in /api/history: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/analyze/<topic>', methods=['GET'])
@@ -346,6 +408,7 @@ def create_app():
                 'analysis': analysis
             })
         except Exception as e:
+            logger.error(f"Error in /api/analyze: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/export', methods=['GET'])
@@ -360,13 +423,14 @@ def create_app():
                 'data': exported
             })
         except Exception as e:
+            logger.error(f"Error in /api/export: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/crawl', methods=['POST'])
     def crawl():
         """Crawl a URL, learn from it, return structured evaluation"""
-        data  = request.json or {}
-        url   = data.get('url', '').strip()
+        data = request.json or {}
+        url = data.get('url', '').strip()
         depth = int(data.get('depth', 1))
         pages = int(data.get('max_pages', 8))
 
@@ -381,11 +445,12 @@ def create_app():
             crawler = WebCrawler(agent,
                                  max_depth=min(depth, 2),
                                  max_pages=min(pages, 15))
-            report   = crawler.crawl(url)
-            eval_    = crawler.build_evaluation(report)
+            report = crawler.crawl(url)
+            eval_ = crawler.build_evaluation(report)
             return jsonify({'success': True, 'evaluation': eval_,
                             'stats': agent.get_stats()})
         except Exception as e:
+            logger.error(f"Error in /api/crawl: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/graph', methods=['GET'])
@@ -393,7 +458,7 @@ def create_app():
         """Return knowledge graph as nodes + edges for 2D visualisation"""
         try:
             agent = get_agent()
-            g     = agent.brain.graph
+            g = agent.brain.graph
 
             # Build colour map by relation type
             REL_COLOR = {
@@ -411,44 +476,68 @@ def create_app():
                 degree = sum(1 for (s, r, o) in g.edges
                              if s == name or o == name)
                 nodes.append({
-                    'id':    name,
+                    'id': name,
                     'label': name,
-                    'type':  nd.node_type,
-                    'size':  max(6, min(24, 6 + degree * 2)),
+                    'type': nd.node_type,
+                    'size': max(6, min(24, 6 + degree * 2)),
                 })
 
             edges = []
             for (s, r, o), data in g.edges.items():
                 edges.append({
-                    'source':     s,
-                    'target':     o,
-                    'relation':   r,
+                    'source': s,
+                    'target': o,
+                    'relation': r,
                     'confidence': round(data.confidence, 2),
-                    'inferred':   data.inferred,
-                    'color':      REL_COLOR.get(r, '#b2bec3'),
+                    'inferred': data.inferred,
+                    'color': REL_COLOR.get(r, '#b2bec3'),
                 })
 
             return jsonify({
                 'success': True,
-                'nodes':   nodes,
-                'edges':   edges,
+                'nodes': nodes,
+                'edges': edges,
                 'stats': {
-                    'nodes':    len(nodes),
-                    'edges':    len(edges),
+                    'nodes': len(nodes),
+                    'edges': len(edges),
                     'inferred': sum(1 for e in edges if e['inferred']),
                 }
             })
         except Exception as e:
+            logger.error(f"Error in /api/graph: {e}", exc_info=True)
             return jsonify({'error': str(e)}), 500
 
     @app.route('/api/health', methods=['GET'])
     def health():
         """Health check"""
-        return jsonify({
-            'status': 'healthy',
-            'service': 'jarvix-v2',
-            'version': '2.0.0'
-        })
+        try:
+            agent = get_agent()
+            return jsonify({
+                'status': 'healthy',
+                'service': 'jarvix-v2',
+                'version': '2.0.0',
+                'agent_status': 'initialized'
+            })
+        except Exception as e:
+            logger.warning(f"Health check warning: {e}")
+            return jsonify({
+                'status': 'degraded',
+                'service': 'jarvix-v2',
+                'version': '2.0.0',
+                'error': str(e)
+            }), 503
+
+    @app.errorhandler(404)
+    def not_found(error):
+        """Handle 404 errors"""
+        logger.warning(f"404 Not Found: {request.path}")
+        return jsonify({'error': 'Endpoint not found'}), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        """Handle 500 errors"""
+        logger.error(f"500 Internal Server Error: {error}", exc_info=True)
+        return jsonify({'error': 'Internal server error', 'details': str(error)}), 500
 
     return app
 
@@ -456,4 +545,5 @@ def create_app():
 app = create_app()
 
 if __name__ == '__main__':
+    logger.info("Starting Jarvix v2.0 Flask server...")
     app.run(host='0.0.0.0', port=5000, debug=False)
