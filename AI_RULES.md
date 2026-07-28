@@ -1,8 +1,6 @@
 # Jarvix NoLLM — AI Rules & Tech Stack Guidelines
 
-This document outlines the technical stack, architectural constraints, and library usage rules for maintaining and extending the **Jarvix NoLLM** cognitive AI application.
-
----
+This document outlines the technical stack, architectural constraints, and library usage rules for maintaining and extending the Jarvix NoLLm cognitive AI application.
 
 ## 🚀 Tech Stack Overview
 
@@ -13,8 +11,6 @@ This document outlines the technical stack, architectural constraints, and libra
 * **Data Persistence**: Flat **JSON files** (`jarvix_v2_memory.json`, `_graph.json`, `_semantic.json`) for storing facts, episodic conversations, neural weights, and vocabulary.
 * **Containerization**: **Docker** and **Docker Compose** for consistent, isolated local and production deployments.
 
----
-
 ## 📐 Core Rules & Library Constraints
 
 ### 1. Absolutely No LLMs
@@ -23,7 +19,7 @@ This document outlines the technical stack, architectural constraints, and libra
 
 ### 2. Web Scraping & Crawling
 * **Allowed Libraries**: Use `requests` for HTTP fetching and `BeautifulSoup` (from `bs4`) for HTML parsing and DOM cleaning.
-* **Prohibited**: Do not introduce heavy headless browsers (like Selenium, Playwright, or Puppeteer) unless explicitly requested, to keep the Docker image lightweight and fast.
+* **Prohibited**: Do not introduce headless browsers (like Selenium, Playwright, or Puppeteer) unless explicitly requested, to keep the Docker image lightweight and fast.
 
 ### 3. NLP & Text Parsing
 * **Rule**: Use Python's built-in `re` (Regular Expressions) module and custom rule-based heuristics for SVO (Subject-Verb-Object) extraction, intent classification, and text normalization.

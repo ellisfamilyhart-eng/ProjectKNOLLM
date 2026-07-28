@@ -5,6 +5,61 @@
       "properties": {},
       "aliases": []
     },
+    "reading": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "text_comprehension": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "learning": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "memory": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "reasoning": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "interaction": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "error_generation": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "vision": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "hearing": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "emotion": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "internet_access": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
     "read": {
       "node_type": "concept",
       "properties": {},
@@ -75,11 +130,6 @@
       "properties": {},
       "aliases": []
     },
-    "learning": {
-      "node_type": "concept",
-      "properties": {},
-      "aliases": []
-    },
     "acquiring new knowledge or skills": {
       "node_type": "concept",
       "properties": {},
@@ -106,11 +156,6 @@
       "aliases": []
     },
     "facts and information acquired": {
-      "node_type": "concept",
-      "properties": {},
-      "aliases": []
-    },
-    "memory": {
       "node_type": "concept",
       "properties": {},
       "aliases": []
@@ -1054,13 +1099,1153 @@
       "node_type": "concept",
       "properties": {},
       "aliases": []
+    },
+    "what would you like to learn:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "hello": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "greeting": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "hi": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "hey": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "goodbye": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "farewell": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "bye": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "thank you": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "expresses gratitude": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "thanks": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "please": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "polite word": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "sorry": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "apology": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "yes:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "agreement": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "no:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "disagreement": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "question:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "requests information": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "responds to a question": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "conversation": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "exchange of ideas": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "chat": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "starts a conversation": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "greeting:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "ends a conversation": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "action start conversation": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "learn:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "gain knowledge": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "teach:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "help someone learn": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "remember:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "store information": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "forget:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "lose information": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "think:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "reason about information": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "understand:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "know the meaning of something": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "opinion": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "personal belief": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "information opinion can be true": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "idea": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "thought": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "belief": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "something accepted as true": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "collected information": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "memory:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "stores knowledge": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "happy": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "positive emotion": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "sad": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "negative emotion": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "excited:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "full of enthusiasm": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "curious:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "wanting to learn": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "confused:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "lacking understanding": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "no i": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "understanding": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "interested:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "wanting to know more": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "what:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "begins many questions": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "questions": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "who": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "asks about a person": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "where": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "asks about a place": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "where:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "when": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "asks about time": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "when:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "why": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "asks for a reason": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "how": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "asks for a method": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "what is": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count up": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count 1": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count to 1": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "zero.one": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count to two": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "zero, one, two": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count to three": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "zero, one, two, threww": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "zero, one, two, three": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "living organism": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "a: can also": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "star": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "related to whats": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "property mammal": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "hum": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "i.t": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "computing": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "information technology": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "planets": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "in orbit around stars": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "orbit": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "repeating curved path": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "one object in space moving around another": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "invisible fundamental force orbit pulls objects with mass toward each other": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "fundamental": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "serving as a primary base": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "essential component of something": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "fundamental force": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "basic physical force fundamental governs how all matter and particles interact in the universe": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "force": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "push or a pull acting upon an object as a result of the object's interaction with another": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "connected to fundamental force": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "systematic, evidence-based method of acquiring knowledge about the natural and physical world": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "organized body of knowledge science science process creates": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "0,": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "mean:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "meaning": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "words": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "unorganized": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "raw": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "before information": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "all the properties of number": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "1,2,3,4,5,6,7,8,9": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "count?": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "1,": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "both are true, 1": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "before": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to add 1 + 1": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "start count": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "99": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "1029": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "french": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "japanese": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "languages": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "life": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "be many planets": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "planets:": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "many planets": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "pluto": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "mars": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "jupiter": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "more than one planet": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "what": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "a planet?": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "name of a planet": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "?": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "when you ask a question": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "adapt": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "choose": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "create": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "decide": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "new": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "transform": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "solve": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "discover": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "write": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "reflect": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "change": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "understand": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "dream": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "speak": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "listen": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "three planets": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "earth, mars, and jupiter": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "you math": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "two planet": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "be mars and earth": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "two planets": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "one planet": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "multiple planets": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "multiple": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "attribute many": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "many": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "many numbers": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "more than one number": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "eaxmple of many numbers": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "1,2,3,4,5": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "many numbers?": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "come to teach you": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "exitance": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "sense of being or existing": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "moon": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "small body in space orbiting a planet": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "normally smaller than the planet moon orbits": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "orbits": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "multiple of single orbit": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "eclipse the earth": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "in a tidal lock with the earth": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "earths moon": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "small": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "adjective": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "word small modifies": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "modifies": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to partially change": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "function add": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "change also": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "function subtract": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to change": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to changs": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to alter": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "also considerd as the gaps of emptyness": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "outer space": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "largest empty space": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "in outer space": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "meultiple": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "more than one": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "planet but multiple": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "to ability to add": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "related to space": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "planets and stars": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "liquid": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "game": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "system of logic": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "rock paper scicors": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "rps": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "rock paper sciors": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "learn rps ty": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "thanks aswell": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "ty": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "thanks you": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "smart": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "knowing": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "your age": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "1 year": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
+    },
+    "my age": {
+      "node_type": "concept",
+      "properties": {},
+      "aliases": []
     }
   },
   "edges": [
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "read",
+      "object": "reading",
       "confidence": 1.0,
       "support": 2,
       "inferred": false,
@@ -1069,7 +2254,7 @@
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "understand text",
+      "object": "text_comprehension",
       "confidence": 0.9500000000000001,
       "support": 2,
       "inferred": false,
@@ -1078,7 +2263,7 @@
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "learn facts",
+      "object": "learning",
       "confidence": 1.0,
       "support": 2,
       "inferred": false,
@@ -1087,7 +2272,7 @@
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "remember",
+      "object": "memory",
       "confidence": 1.0,
       "support": 2,
       "inferred": false,
@@ -1096,7 +2281,7 @@
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "reason",
+      "object": "reasoning",
       "confidence": 0.9,
       "support": 2,
       "inferred": false,
@@ -1105,7 +2290,7 @@
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "answer questions",
+      "object": "interaction",
       "confidence": 0.8500000000000001,
       "support": 2,
       "inferred": false,
@@ -1114,7 +2299,7 @@
     {
       "subject": "jarvix",
       "relation": "can",
-      "object": "make mistakes",
+      "object": "error_generation",
       "confidence": 0.75,
       "support": 2,
       "inferred": false,
@@ -1123,7 +2308,7 @@
     {
       "subject": "jarvix",
       "relation": "opposite_of",
-      "object": "see images",
+      "object": "vision",
       "confidence": 0.9500000000000001,
       "support": 2,
       "inferred": false,
@@ -1132,7 +2317,7 @@
     {
       "subject": "jarvix",
       "relation": "opposite_of",
-      "object": "hear audio",
+      "object": "hearing",
       "confidence": 0.9500000000000001,
       "support": 2,
       "inferred": false,
@@ -1141,7 +2326,7 @@
     {
       "subject": "jarvix",
       "relation": "opposite_of",
-      "object": "feel emotions",
+      "object": "emotion",
       "confidence": 0.65,
       "support": 2,
       "inferred": false,
@@ -1150,7 +2335,7 @@
     {
       "subject": "jarvix",
       "relation": "opposite_of",
-      "object": "access internet",
+      "object": "internet_access",
       "confidence": 1.0,
       "support": 2,
       "inferred": false,
@@ -1158,9 +2343,108 @@
     },
     {
       "subject": "jarvix",
+      "relation": "can",
+      "object": "read",
+      "confidence": 1.0,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "understand text",
+      "confidence": 0.9500000000000001,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "learn facts",
+      "confidence": 1.0,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "remember",
+      "confidence": 1.0,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "reason",
+      "confidence": 0.9,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "answer questions",
+      "confidence": 0.8500000000000001,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "can",
+      "object": "make mistakes",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "see images",
+      "confidence": 1.0,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "hear audio",
+      "confidence": 1.0,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "feel emotions",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
+      "relation": "opposite_of",
+      "object": "access internet",
+      "confidence": 1.0,
+      "support": 1,
+      "inferred": false,
+      "source": "seed"
+    },
+    {
+      "subject": "jarvix",
       "relation": "is_a",
       "object": "ai",
-      "confidence": 0.99,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1169,7 +2453,7 @@
       "subject": "jarvix",
       "relation": "can",
       "object": "reason about knowledge",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1178,7 +2462,7 @@
       "subject": "jarvix",
       "relation": "can",
       "object": "read text",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1187,7 +2471,7 @@
       "subject": "learning",
       "relation": "definition",
       "object": "acquiring new knowledge or skills",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1196,7 +2480,7 @@
       "subject": "learning",
       "relation": "is_a",
       "object": "cognitive process",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1205,7 +2489,7 @@
       "subject": "fact",
       "relation": "definition",
       "object": "a piece of true information",
-      "confidence": 0.9,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1214,7 +2498,7 @@
       "subject": "knowledge",
       "relation": "definition",
       "object": "facts and information acquired",
-      "confidence": 0.9,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1223,7 +2507,7 @@
       "subject": "memory",
       "relation": "definition",
       "object": "stored information from the past",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1232,7 +2516,7 @@
       "subject": "question",
       "relation": "definition",
       "object": "a request for information",
-      "confidence": 0.9,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1241,7 +2525,7 @@
       "subject": "answer",
       "relation": "definition",
       "object": "a response to a question",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1250,7 +2534,7 @@
       "subject": "topic",
       "relation": "definition",
       "object": "a subject being discussed",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1259,7 +2543,7 @@
       "subject": "name",
       "relation": "definition",
       "object": "a label used to identify something",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1268,7 +2552,7 @@
       "subject": "word",
       "relation": "definition",
       "object": "a unit of language with meaning",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1277,7 +2561,7 @@
       "subject": "language",
       "relation": "definition",
       "object": "a system of communication",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1286,7 +2570,7 @@
       "subject": "sentence",
       "relation": "definition",
       "object": "a complete unit of written or spoken language",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1295,7 +2579,7 @@
       "subject": "ai",
       "relation": "definition",
       "object": "artificial intelligence \u2014 machines that simulate thinking",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1304,7 +2588,7 @@
       "subject": "computer",
       "relation": "definition",
       "object": "a machine that processes information",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1313,7 +2597,7 @@
       "subject": "internet",
       "relation": "definition",
       "object": "a global network of computers",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1322,7 +2606,7 @@
       "subject": "human",
       "relation": "is_a",
       "object": "mammal",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1331,7 +2615,7 @@
       "subject": "human",
       "relation": "can",
       "object": "think",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1340,7 +2624,7 @@
       "subject": "human",
       "relation": "can",
       "object": "learn",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1349,7 +2633,7 @@
       "subject": "animal",
       "relation": "definition",
       "object": "a living organism that is not a plant",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1358,7 +2642,7 @@
       "subject": "mammal",
       "relation": "is_a",
       "object": "animal",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1376,7 +2660,7 @@
       "subject": "dog",
       "relation": "is_a",
       "object": "mammal",
-      "confidence": 0.9,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1385,7 +2669,7 @@
       "subject": "cat",
       "relation": "is_a",
       "object": "mammal",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1394,7 +2678,7 @@
       "subject": "color",
       "relation": "definition",
       "object": "a property of light perceived by the eye",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1403,7 +2687,7 @@
       "subject": "red",
       "relation": "instance_of",
       "object": "color",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1412,7 +2696,7 @@
       "subject": "blue",
       "relation": "instance_of",
       "object": "color",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1421,7 +2705,7 @@
       "subject": "green",
       "relation": "instance_of",
       "object": "color",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1430,7 +2714,7 @@
       "subject": "number",
       "relation": "definition",
       "object": "a mathematical value used to count",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1439,7 +2723,7 @@
       "subject": "science",
       "relation": "definition",
       "object": "systematic study of the natural world",
-      "confidence": 0.9,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1448,7 +2732,7 @@
       "subject": "math",
       "relation": "definition",
       "object": "the study of numbers and patterns",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1457,7 +2741,7 @@
       "subject": "programming",
       "relation": "definition",
       "object": "writing instructions for a computer",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1466,7 +2750,7 @@
       "subject": "python",
       "relation": "is_a",
       "object": "programming language",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1475,7 +2759,7 @@
       "subject": "gravity",
       "relation": "definition",
       "object": "a force that pulls objects together",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1484,7 +2768,7 @@
       "subject": "planet",
       "relation": "definition",
       "object": "a large body orbiting a star",
-      "confidence": 0.9500000000000001,
+      "confidence": 1.0,
       "support": 2,
       "inferred": false,
       "source": "seed"
@@ -1493,7 +2777,7 @@
       "subject": "earth",
       "relation": "is_a",
       "object": "planet",
-      "confidence": 0.95,
+      "confidence": 1.0,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1511,7 +2795,7 @@
       "subject": "water",
       "relation": "definition",
       "object": "a molecule of hydrogen and oxygen",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1520,7 +2804,7 @@
       "subject": "time",
       "relation": "definition",
       "object": "the progression of events from past to future",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1529,7 +2813,7 @@
       "subject": "space",
       "relation": "definition",
       "object": "the vast expanse beyond earth's atmosphere",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1538,7 +2822,7 @@
       "subject": "energy",
       "relation": "definition",
       "object": "the capacity to do work",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1547,7 +2831,7 @@
       "subject": "information",
       "relation": "definition",
       "object": "data that has meaning and context",
-      "confidence": 0.9,
+      "confidence": 0.9500000000000001,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1556,7 +2840,7 @@
       "subject": "truth",
       "relation": "definition",
       "object": "a statement that corresponds to reality",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "support": 1,
       "inferred": false,
       "source": "seed"
@@ -1719,7 +3003,7 @@
       "relation": "has_property",
       "object": "true",
       "confidence": 1.0,
-      "support": 5,
+      "support": 1,
       "inferred": false,
       "source": "user"
     },
@@ -1826,7 +3110,7 @@
       "subject": "you",
       "relation": "can",
       "object": "learn math",
-      "confidence": 0.75,
+      "confidence": 0.8,
       "support": 1,
       "inferred": false,
       "source": "user"
@@ -2330,7 +3614,7 @@
       "subject": "2",
       "relation": "is_a",
       "object": "number",
-      "confidence": 0.75,
+      "confidence": 0.8,
       "support": 1,
       "inferred": false,
       "source": "user"
@@ -2339,7 +3623,7 @@
       "subject": "3",
       "relation": "is_a",
       "object": "number",
-      "confidence": 0.75,
+      "confidence": 0.8,
       "support": 1,
       "inferred": false,
       "source": "user"
@@ -2420,7 +3704,7 @@
       "subject": "1",
       "relation": "is_a",
       "object": "number",
-      "confidence": 0.75,
+      "confidence": 0.8500000000000001,
       "support": 1,
       "inferred": false,
       "source": "user"
@@ -2537,7 +3821,7 @@
       "subject": "count",
       "relation": "has_property",
       "object": "counting",
-      "confidence": 0.65,
+      "confidence": 0.7000000000000001,
       "support": 1,
       "inferred": false,
       "source": "user"
@@ -2564,7 +3848,7 @@
       "subject": "counting",
       "relation": "has_property",
       "object": "1",
-      "confidence": 0.65,
+      "confidence": 0.7000000000000001,
       "support": 1,
       "inferred": false,
       "source": "user"
@@ -2628,7 +3912,7 @@
       "relation": "has_property",
       "object": "combining two or more numbers into one total",
       "confidence": 0.7000000000000001,
-      "support": 2,
+      "support": 1,
       "inferred": false,
       "source": "user"
     },
@@ -2853,7 +4137,7 @@
       "relation": "has_property",
       "object": "combining two numbers",
       "confidence": 0.7500000000000001,
-      "support": 3,
+      "support": 1,
       "inferred": false,
       "source": "user"
     },
@@ -2861,6 +4145,1662 @@
       "subject": "addition",
       "relation": "has_property",
       "object": "= combining two numbers",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "what would you like to learn:",
+      "relation": "definition",
+      "object": "question",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "hello",
+      "relation": "is_a",
+      "object": "greeting",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "hi",
+      "relation": "is_a",
+      "object": "greeting",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "hey",
+      "relation": "is_a",
+      "object": "greeting",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "goodbye",
+      "relation": "is_a",
+      "object": "farewell",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "bye",
+      "relation": "is_a",
+      "object": "farewell",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "thank you",
+      "relation": "has_property",
+      "object": "expresses gratitude",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "thanks",
+      "relation": "has_property",
+      "object": "expresses gratitude",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "please",
+      "relation": "is_a",
+      "object": "polite word",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "sorry",
+      "relation": "is_a",
+      "object": "apology",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "yes:",
+      "relation": "definition",
+      "object": "agreement",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "no:",
+      "relation": "definition",
+      "object": "disagreement",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "i",
+      "relation": "definition",
+      "object": "disagreement",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "question:",
+      "relation": "definition",
+      "object": "requests information",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "answer",
+      "relation": "has_property",
+      "object": "responds to a question",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "conversation",
+      "relation": "is_a",
+      "object": "exchange of ideas",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "chat",
+      "relation": "is_a",
+      "object": "conversation",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "greeting",
+      "relation": "has_property",
+      "object": "starts a conversation",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "greeting:",
+      "relation": "definition",
+      "object": "starts a conversation",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "farewell",
+      "relation": "has_property",
+      "object": "ends a conversation",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "greeting",
+      "relation": "has_property",
+      "object": "action start conversation",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "learn:",
+      "relation": "definition",
+      "object": "gain knowledge",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "teach:",
+      "relation": "definition",
+      "object": "help someone learn",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "remember:",
+      "relation": "definition",
+      "object": "store information",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "forget:",
+      "relation": "definition",
+      "object": "lose information",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "think:",
+      "relation": "definition",
+      "object": "reason about information",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "understand:",
+      "relation": "definition",
+      "object": "know the meaning of something",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "opinion",
+      "relation": "is_a",
+      "object": "personal belief",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "fact",
+      "relation": "has_property",
+      "object": "information opinion can be true",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "idea",
+      "relation": "is_a",
+      "object": "thought",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "belief",
+      "relation": "has_property",
+      "object": "something accepted as true",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "knowledge",
+      "relation": "has_property",
+      "object": "collected information",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "memory:",
+      "relation": "definition",
+      "object": "stores knowledge",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "memory",
+      "relation": "has_property",
+      "object": "stores knowledge",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "happy",
+      "relation": "is_a",
+      "object": "positive emotion",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "sad",
+      "relation": "is_a",
+      "object": "negative emotion",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "excited:",
+      "relation": "definition",
+      "object": "full of enthusiasm",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "curious:",
+      "relation": "definition",
+      "object": "wanting to learn",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "confused:",
+      "relation": "definition",
+      "object": "lacking understanding",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "no i",
+      "relation": "definition",
+      "object": "understanding",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "interested:",
+      "relation": "definition",
+      "object": "wanting to know more",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "what:",
+      "relation": "definition",
+      "object": "begins many questions",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "i",
+      "relation": "definition",
+      "object": "questions",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "who",
+      "relation": "has_property",
+      "object": "asks about a person",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "where",
+      "relation": "has_property",
+      "object": "asks about a place",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "where:",
+      "relation": "definition",
+      "object": "asks about a place",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "when",
+      "relation": "has_property",
+      "object": "asks about time",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "when:",
+      "relation": "definition",
+      "object": "asks about time",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "why",
+      "relation": "has_property",
+      "object": "asks for a reason",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "how",
+      "relation": "has_property",
+      "object": "asks for a method",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "whats",
+      "relation": "definition",
+      "object": "what is",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count",
+      "relation": "definition",
+      "object": "counting",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count up",
+      "relation": "has_property",
+      "object": "counting up",
+      "confidence": 0.7000000000000001,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count up",
+      "relation": "definition",
+      "object": "counting up",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count:",
+      "relation": "definition",
+      "object": "counting up",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count 1",
+      "relation": "has_property",
+      "object": "1",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count to 1",
+      "relation": "has_property",
+      "object": "zero.one",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count to two",
+      "relation": "has_property",
+      "object": "zero, one, two",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count to three",
+      "relation": "has_property",
+      "object": "zero, one, two, threww",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count to three",
+      "relation": "has_property",
+      "object": "zero, one, two, three",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "animal",
+      "relation": "instance_of",
+      "object": "living organism",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "whats",
+      "relation": "has_property",
+      "object": "what is",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "a: can also",
+      "relation": "definition",
+      "object": "one",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "sun",
+      "relation": "has_property",
+      "object": "star",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "sun",
+      "relation": "is_a",
+      "object": "star",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "star",
+      "relation": "has_property",
+      "object": "related to whats",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "human",
+      "relation": "named",
+      "object": "mammal",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "human",
+      "relation": "has",
+      "object": "property mammal",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "hum",
+      "relation": "has_property",
+      "object": "mammal",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "i.t",
+      "relation": "has_property",
+      "object": "computing",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "i.t",
+      "relation": "definition",
+      "object": "information technology",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets",
+      "relation": "has_property",
+      "object": "in orbit around stars",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "orbit",
+      "relation": "is_a",
+      "object": "repeating curved path",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "orbit",
+      "relation": "has_property",
+      "object": "one object in space moving around another",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "gravity",
+      "relation": "is_a",
+      "object": "invisible fundamental force orbit pulls objects with mass toward each other",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "fundamental",
+      "relation": "definition",
+      "object": "serving as a primary base",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "fundamental",
+      "relation": "has_property",
+      "object": "essential component of something",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "fundamental force",
+      "relation": "is_a",
+      "object": "basic physical force fundamental governs how all matter and particles interact in the universe",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "force",
+      "relation": "is_a",
+      "object": "push or a pull acting upon an object as a result of the object's interaction with another",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "force",
+      "relation": "has_property",
+      "object": "connected to fundamental force",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "science",
+      "relation": "is_a",
+      "object": "systematic, evidence-based method of acquiring knowledge about the natural and physical world",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "science",
+      "relation": "is_a",
+      "object": "organized body of knowledge science science process creates",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count",
+      "relation": "has_property",
+      "object": "count up",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count up",
+      "relation": "has_property",
+      "object": "0,",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "thinking",
+      "relation": "has_property",
+      "object": "associated with thinking",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "mean:",
+      "relation": "definition",
+      "object": "meaning",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "data",
+      "relation": "has_property",
+      "object": "words",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "data",
+      "relation": "has_property",
+      "object": "unorganized",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "data",
+      "relation": "has_property",
+      "object": "raw",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "data",
+      "relation": "has_property",
+      "object": "before information",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count",
+      "relation": "has",
+      "object": "all the properties of number",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count",
+      "relation": "has_property",
+      "object": "1,2,3,4,5,6,7,8,9",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count?",
+      "relation": "has_property",
+      "object": "count",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count",
+      "relation": "has_property",
+      "object": "1,",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "both are true, 1",
+      "relation": "has_property",
+      "object": "before",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "counting up",
+      "relation": "definition",
+      "object": "to add 1 + 1",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "count up",
+      "relation": "definition",
+      "object": "1 + 1",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "start count",
+      "relation": "definition",
+      "object": "0",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "99",
+      "relation": "is_a",
+      "object": "number",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "1029",
+      "relation": "is_a",
+      "object": "number",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "english",
+      "relation": "is_a",
+      "object": "language",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "french",
+      "relation": "is_a",
+      "object": "language",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "japanese",
+      "relation": "is_a",
+      "object": "language",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "languages",
+      "relation": "has_property",
+      "object": "language",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planet",
+      "relation": "has",
+      "object": "life",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planet",
+      "relation": "can",
+      "object": "be many planets",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets:",
+      "relation": "definition",
+      "object": "many planets",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "many planets",
+      "relation": "has_property",
+      "object": "planets",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "pluto",
+      "relation": "is_a",
+      "object": "planet",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "mars",
+      "relation": "is_a",
+      "object": "planet",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "jupiter",
+      "relation": "is_a",
+      "object": "planet",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets",
+      "relation": "definition",
+      "object": "more than one planet",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "what",
+      "relation": "instance_of",
+      "object": "a planet?",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "pluto",
+      "relation": "has_property",
+      "object": "name of a planet",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "name of a planet",
+      "relation": "is_a",
+      "object": "name",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "?",
+      "relation": "has_property",
+      "object": "when you ask a question",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "adapt",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "choose",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "create",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "decide",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "has_property",
+      "object": "new",
+      "confidence": 0.9500000000000003,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "transform",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "solve",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "discover",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "question",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "write",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "reflect",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "change",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "reason",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "understand",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "dream",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "speak",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "listen",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "read",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "three planets",
+      "relation": "has_property",
+      "object": "earth, mars, and jupiter",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "you",
+      "relation": "can",
+      "object": "you math",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets",
+      "relation": "has_property",
+      "object": "in space",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "two planet",
+      "relation": "can",
+      "object": "be mars and earth",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "two planets",
+      "relation": "can",
+      "object": "be mars and earth",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planet",
+      "relation": "has_property",
+      "object": "one planet",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "two planets",
+      "relation": "has_property",
+      "object": "multiple planets",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "multiple",
+      "relation": "has",
+      "object": "attribute many",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "multiple",
+      "relation": "has_property",
+      "object": "many",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "multiple",
+      "relation": "definition",
+      "object": "many",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "many numbers",
+      "relation": "has_property",
+      "object": "more than one number",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "eaxmple of many numbers",
+      "relation": "has_property",
+      "object": "1,2,3,4,5",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "what",
+      "relation": "instance_of",
+      "object": "many numbers?",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "i",
+      "relation": "has",
+      "object": "come to teach you",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "exitance",
+      "relation": "is_a",
+      "object": "sense of being or existing",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "moon",
+      "relation": "is_a",
+      "object": "small body in space orbiting a planet",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "moon",
+      "relation": "has_property",
+      "object": "normally smaller than the planet moon orbits",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "orbits",
+      "relation": "definition",
+      "object": "orbit",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "orbits",
+      "relation": "has_property",
+      "object": "multiple of single orbit",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "earth",
+      "relation": "has",
+      "object": "moon",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "moon",
+      "relation": "can",
+      "object": "eclipse the earth",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "moon",
+      "relation": "has_property",
+      "object": "in a tidal lock with the earth",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "moon",
+      "relation": "has_property",
+      "object": "earths moon",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "earths moon",
+      "relation": "named",
+      "object": "moon",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "small",
+      "relation": "is_a",
+      "object": "adjective",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "adjective",
+      "relation": "is_a",
+      "object": "word small modifies",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "modifies",
+      "relation": "definition",
+      "object": "to partially change",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "change",
+      "relation": "has",
+      "object": "function add",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "change also",
+      "relation": "has",
+      "object": "function subtract",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "change",
+      "relation": "definition",
+      "object": "to change",
+      "confidence": 0.8,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "to changs",
+      "relation": "has_property",
+      "object": "to alter",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "change",
+      "relation": "has_property",
+      "object": "to change",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "space",
+      "relation": "has_property",
+      "object": "also considerd as the gaps of emptyness",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "outer space",
+      "relation": "has_property",
+      "object": "largest empty space",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets",
+      "relation": "has_property",
+      "object": "in outer space",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets",
+      "relation": "has_property",
+      "object": "multiple planets",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "meultiple",
+      "relation": "definition",
+      "object": "more than one",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "planets",
+      "relation": "has_property",
+      "object": "planet but multiple",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "to",
+      "relation": "has",
+      "object": "to ability to add",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "outer space",
+      "relation": "has_property",
+      "object": "related to space",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "outer space",
+      "relation": "has",
+      "object": "planets and stars",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "water",
+      "relation": "is_a",
+      "object": "liquid",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "game",
+      "relation": "is_a",
+      "object": "system of logic",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "rock paper scicors",
+      "relation": "is_a",
+      "object": "game",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "rps",
+      "relation": "has_property",
+      "object": "rock paper sciors",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "learn rps ty",
+      "relation": "definition",
+      "object": "thanks aswell",
+      "confidence": 0.85,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "ty",
+      "relation": "definition",
+      "object": "thanks you",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "smart",
+      "relation": "definition",
+      "object": "knowing",
+      "confidence": 0.75,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "your age",
+      "relation": "has_property",
+      "object": "1 year",
+      "confidence": 0.65,
+      "support": 1,
+      "inferred": false,
+      "source": "user"
+    },
+    {
+      "subject": "my age",
+      "relation": "has_property",
+      "object": "1 year",
       "confidence": 0.65,
       "support": 1,
       "inferred": false,
