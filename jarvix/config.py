@@ -22,7 +22,8 @@ BEHAVIOR_CONFIG = {
     "forgetting_rate": 0.02,        # How much it forgets per day
     "learning_queue_max": 100,      # Maximum items in learning queue
     "question_batch_size": 5,       # Max questions to ask at once
-}
+        "working_memory_max_turns": 100,  # Max turns in working memory
+    }
 
 # ============================================================
 # EMOTIONAL STATES & TRIGGERS

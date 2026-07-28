@@ -25,13 +25,19 @@ CLOSURE_RATIO      = 0.90   # fraction of facts mastered to close a topic
 def _blank_fact(confidence: float = 0.5) -> dict:
     """Return a fresh fact-state dict."""
     return {
-        "confidence":     confidence,
-        "support":        1,
-        "stage":          STAGE_NEW,
-        "questions_asked": [],      # list of question strings already asked
-        "depth":          0,        # reasoning depth when this fact was stored
-        "added":          datetime.now().isoformat(),
-        "last_updated":   datetime.now().isoformat(),
+        "confidence": confidence,
+        "support": 1,
+        "stage": STAGE_NEW,
+        "questions_asked": [],
+        "depth": 0,
+        "added": datetime.now().isoformat(),
+        "last_updated": datetime.now().isoformat(),
+
+        # NEW
+        "consolidated": False,
+        "parent": None,
+        "children": [],
+        "importance": 0.5,
     }
 
 
@@ -283,3 +289,68 @@ class MemoryStore:
             "associations_count":  sum(len(v) for v in self.associations.values()) // 2,
             "last_save":           self.last_save_time,
         }
+
+
+def get_unconsolidated(self):
+    """
+    Returns unconsolidated facts.
+
+    Output:
+        [
+            (topic, fact, state),
+            ...
+        ]
+    """
+
+    results = []
+
+    for topic, facts in self.facts.items():
+
+        for fact, state in facts.items():
+
+            if not state.get("consolidated", False):
+
+                results.append((topic, fact, state))
+
+    return results
+    
+def mark_consolidated(self, topic, fact):
+
+    state = self.get_fact_state(topic, fact)
+
+    if state:
+
+        state["consolidated"] = True
+        state["last_updated"] = datetime.now().isoformat()
+        
+        
+def link_fact(self, topic, parent_fact, child_fact):
+
+    parent = self.get_fact_state(topic, parent_fact)
+
+    if parent is None:
+        return
+
+    if "children" not in parent:
+        parent["children"] = []
+
+    if child_fact not in parent["children"]:
+        parent["children"].append(child_fact)
+
+    child = self.get_fact_state(topic, child_fact)
+
+    if child is not None:
+        child["parent"] = parent_fact
+        
+        
+        
+def increase_importance(self, topic, fact, amount=0.05):
+
+    state = self.get_fact_state(topic, fact)
+
+    if state:
+
+        state["importance"] = min(
+            1.0,
+            state.get("importance", 0.5) + amount
+        )

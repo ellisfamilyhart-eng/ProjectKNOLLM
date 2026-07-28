@@ -9,19 +9,30 @@ from datetime import datetime, timedelta
 
 class ConversationTemplate:
     """Individual conversation template with variations"""
-    
-    def __init__(self, category: str, intent: str, templates: List[str], 
-                 requires_topic: bool = False, emotional_tone: str = "neutral"):
+
+    def __init__(
+        self,
+        category: str,
+        intent: str,
+        templates: list[str],
+        requires_topic: bool = False,
+        emotional_tone: str = "neutral"
+    ):
+
         self.category = category
         self.intent = intent
         self.templates = templates
         self.requires_topic = requires_topic
         self.emotional_tone = emotional_tone
-    
+
+
     def generate(self, **kwargs) -> str:
+
         template = random.choice(self.templates)
+
         try:
             return template.format(**kwargs)
+
         except KeyError:
             return template
 
@@ -253,6 +264,8 @@ class EnhancedConversationManager:
         self.memory = memory
         self.template_db = ConversationDatabase()
 
+        self.follow_up_probability = 0.35
+
         self.current_conversation = []
         self.conversation_threads = []
         self.user_preferences = {}
@@ -374,11 +387,29 @@ class EnhancedConversationManager:
 
         return response
 
-    def generate_follow_up_question(self, topic: str, _last_response: str = '') -> str:
-        templates = self.template_db.get_by_category("curiosity") \
-                    or self.template_db.get_by_category("engagement")
-        template = random.choice(templates)
-        return template.generate(topic=topic, related_topic=self.get_related_topic(topic))
+    def generate_follow_up_question(self, topic: str, _last_response: str = ""):
+
+    	# Don't always ask something.
+    	if random.random() > self.follow_up_probability:
+        	return ""
+
+    	# If we already know quite a bit, don't ask a generic question.
+    	fact_count = len(self.memory.get_facts_by_topic(topic))
+
+    	if fact_count >= 5:
+        	return ""
+
+    	templates = (
+        	self.template_db.get_by_category("curiosity")
+        	or self.template_db.get_by_category("engagement")
+   	 )
+
+    	template = random.choice(templates)
+
+    	return template.generate(
+       		topic=topic,
+        	related_topic=self.get_related_topic(topic)
+    	)
 
     def generate_affirmation(self, context: dict) -> str:
         surprise = context.get('surprise', 0.5)

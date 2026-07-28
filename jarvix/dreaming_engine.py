@@ -66,7 +66,8 @@ class DreamingEngine:
     DECAY_CONF_MAX             = 0.40   # only decay edges below this confidence
     DECAY_TIMES_MAX            = 2      # only decay edges seen this few times
     COMPRESS_MIN_EPISODES      = 2      # need this many episodes to compress
-
+    MEMORY_REINFORCE_THRESHOLD = 5
+    
     def __init__(self, semantic_memory, episodic_memory,
                  working_memory, confidence_mgr, canonical_fn=None):
         """
@@ -94,18 +95,29 @@ class DreamingEngine:
         import time as _t
         t0    = _t.time()
         cycle = DreamCycle()
-
-        cycle.facts_compressed = self._compress_episodes(max_episodes)
+        
+        cycle.facts_compressed = (
+            self._compress_episodes(max_episodes)
+            +
+            self._replay_semantic_memory()
+        )
         cycle.episodes_scanned = min(max_episodes, len(self.epi.episodes))
-        cycle.rules_found      = self._infer_rules()
+        cycle.rules_found = (
+            self._infer_rules()
+            +
+            self.sem.infer_properties()
+        )
         cycle.aliases_merged   = self._merge_aliases()
         cycle.links_boosted    = self._boost_co_occurrences()
         cycle.links_decayed    = self._decay_weak_links()
         cycle.prototypes_built = self._build_prototypes()
-
+        self.sem.replay_memory()
+        self._consolidate_clusters()
+        
         cycle.duration_ms  = int((_t.time() - t0) * 1000)
         self.cycle_count  += 1
         self.cycle_history.append(cycle)
+        
         if len(self.cycle_history) > 100:
             self.cycle_history = self.cycle_history[-100:]
 
@@ -124,7 +136,13 @@ class DreamingEngine:
         episodes = self.epi.episodes[-max_episodes:]
 
         for ep in episodes:
-            text = ep.get("user_input", "")
+            text = (
+                ep.get("user_input", "")
+                +
+                " "
+                +
+                ep.get("assistant_output", "")
+            )
             if not text:
                 continue
             # Simple "X is Y" / "X has Y" extraction
@@ -152,7 +170,65 @@ class DreamingEngine:
                                       source="dream")
                     boosted += 1
         return boosted
+    # ================================================================
+    # STEP 1B: Replay existing semantic memory
+    # ================================================================
 
+    def _replay_semantic_memory(self) -> int:
+        """
+        Re-read existing semantic memory and strengthen knowledge.
+
+        This is the brain replaying old memories during sleep.
+        Frequently connected concepts become more stable.
+        """
+
+        strengthened = 0
+
+        for (s, r, o), edge in list(self.sem.edges.items()):
+
+            # Ignore weak/noisy memories
+            if edge.confidence < 0.25:
+                continue
+
+            # Existing knowledge gets reinforcement
+            if edge.times_seen >= self.MEMORY_REINFORCE_THRESHOLD:
+                boost = min(
+                    0.01 * edge.times_seen,
+                    0.10
+                )
+
+                old = edge.confidence
+                edge.confidence = min(
+                    1.0,
+                    edge.confidence + boost
+                )
+
+                if edge.confidence > old:
+                    strengthened += 1
+
+            # Create associative memory
+            related = self.sem.get_edge(
+                o,
+                "related_to",
+                s
+            )
+
+            if not related and r in (
+                "is_a",
+                "has",
+                "has_property",
+                "can"
+            ):
+                self.sem.add_edge(
+                    s,
+                    "related_to",
+                    o,
+                    confidence=0.25,
+                    source="dream_replay",
+                    inferred=True
+                )
+
+        return strengthened
     # ================================================================
     # STEP 2: Infer reusable rules
     # ================================================================
@@ -395,3 +471,36 @@ class DreamingEngine:
              "ms": c.duration_ms}
             for c in self.cycle_history[-20:]
         ]
+
+    def _consolidate_clusters(self):
+        """
+        Merge strongly connected concepts into higher-level concepts.
+        """
+
+        clusters = defaultdict(list)
+
+        for (s,r,o), edge in self.sem.edges.items():
+            if (
+                r == "related_to"
+                and edge.confidence > 0.7
+            ):
+                clusters[o].append(s)
+
+        created = 0
+
+        for center, members in clusters.items():
+
+            if len(members) >= 3:
+
+                self.sem.add_edge(
+                    center,
+                    "concept_cluster",
+                    ",".join(members[:10]),
+                    confidence=0.8,
+                    source="dream_cluster",
+                    inferred=True
+                )
+
+                created += 1
+
+        return created

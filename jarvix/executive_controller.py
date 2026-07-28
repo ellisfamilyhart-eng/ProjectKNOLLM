@@ -8,7 +8,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from typing import Optional
-
+from .response_generator     import ResponseGenerator
+from .input_parser           import InputParser
+from .knowledge_validator    import KnowledgeValidator
+from .thought                import ThoughtEngine
+from .reasoning_engine       import ReasoningEngine
+from .cognitive_planner      import CognitivePlanner
 from .intent_classifier      import IntentClassifier, IntentResult, Intent
 from .relation_detector      import RelationDetector, Triple
 from .command_engine         import CommandEngine, CommandResult
@@ -53,6 +58,12 @@ class ExecutiveController:
 
     def __init__(self, working_memory, semantic_memory, logic_engine,
                  contradiction, confidence, curiosity, brain, basic_conversation):
+
+        self.thought_engine = ThoughtEngine()
+        self.reasoning_engine = ReasoningEngine()
+        self.response_generator = ResponseGenerator()
+        self.cognitive_planner = CognitivePlanner()
+
         self.wm         = working_memory
         self.sem        = semantic_memory
         self.logic      = logic_engine
@@ -65,12 +76,21 @@ class ExecutiveController:
         self.intent_clf  = IntentClassifier()
         self.rel_det     = RelationDetector()
         self.personality = PersonalityEngine()
-        self.qbrain      = None   # built in set_agent (needs graph + sem)
+        self.qbrain      = None
+        self.validator = KnowledgeValidator(
+             self.sem
+        )
 
         self._agent      = None
         self.cmd_engine  = None
         self.ctx_builder = None
         self._ks         = None
+
+        # Cognitive architecture
+
+        self.parser = InputParser()
+
+        self.last_plan = []
 
     def set_agent(self, agent):
         self._agent      = agent
@@ -95,22 +115,87 @@ class ExecutiveController:
         if bulk:
             return self._run_bulk(bulk)
 
-        ctx          = PipelineContext(raw=raw)
+        ctx = PipelineContext(raw=raw)
+
+
+        # Resolve references
+
         ctx.resolved = self.wm.resolve_coreference(raw)
-        ctx.intent   = self.intent_clf.classify(ctx.resolved)
-        ctx.topic    = ctx.intent.subject or self.wm.state.current_topic or ""
+
+
+
+        ################################################
+        # New cognitive pipeline
+        ################################################
+
+
+        parsed = self.parser.parse(
+            ctx.resolved
+        )
+        
+
+        thoughts = self.thought_engine.think(
+            parsed
+        )
+
+
+        reasoning = self.reasoning_engine.reason(
+            thoughts
+        )
+
+
+        if reasoning.selected_thought:
+
+            self.last_plan = self.cognitive_planner.create_plan(
+                reasoning.selected_thought
+            )
+
+        else:
+
+            self.last_plan = []
+
+
+
+        ################################################
+        # Existing intent system continues
+        ################################################
+
+        ctx.intent = self.intent_clf.classify(
+            ctx.resolved
+        )
+
+        ctx.topic = (
+            ctx.intent.subject
+            or self.wm.state.current_topic
+            or ""
+        )
 
         code = ctx.intent.code
-        if code in (Intent.COMMAND, Intent.WEB_REQUEST): return self._run_command(ctx)
-        if code == Intent.MEMORY_QUERY:                  return self._run_memory_query(ctx)
-        if code == Intent.IDENTITY:                      return self._run_identity(ctx)
-        if code == Intent.CHAT:                          return self._run_chat(ctx)
-        if code == Intent.QUESTION:                      return self._run_question(ctx)
-        if code == Intent.DEFINITION:                    return self._run_definition(ctx)
-        if code == Intent.EXAMPLE:                       return self._run_example(ctx)
+
+        if code in (Intent.COMMAND, Intent.WEB_REQUEST):
+            return self._run_command(ctx)
+
+        if code == Intent.MEMORY_QUERY:
+            return self._run_memory_query(ctx)
+
+        if code == Intent.IDENTITY:
+            return self._run_identity(ctx)
+
+        if code == Intent.CHAT:
+            return self._run_chat(ctx)
+
+        if code == Intent.QUESTION:
+            return self._run_question(ctx)
+
+        if code == Intent.DEFINITION:
+            return self._run_definition(ctx)
+
+        if code == Intent.EXAMPLE:
+            return self._run_example(ctx)
 
         resolved_exp = ctx.resolved.replace("cannot", "can not")
-        ctx.triple   = self.rel_det.detect(resolved_exp)
+        ctx.triple = self.rel_det.detect(resolved_exp)
+
         return self._run_teach(ctx)
 
     # ================================================================
@@ -201,7 +286,50 @@ class ExecutiveController:
         self._record(ctx, response)
         return response
 
+    def _split_compound_sentence(self, text: str) -> list[str]:
+        """Splits compound statements connected by 'and' or 'or' into simple sentences."""
+        # Simple split on conjunctions flanked by spaces to avoid splitting inside words
+        segments = re.split(r'\s+(?:and|or)\s+', text, flags=re.IGNORECASE)
+        # Clean up fragments and filter out empty strings
+        return [seg.strip() for seg in segments if seg.strip()]
+
     def _run_chat(self, ctx: PipelineContext) -> str:
+        # If the user is trying to teach a fact using a colon, don't throw it 
+        # away to say hello. Force it to run through the learning pipeline!
+        if ":" in ctx.resolved:
+            resolved_exp = ctx.resolved.replace("cannot", "can not")
+            ctx.triple = self.rel_det.detect(resolved_exp)
+            return self._run_teach(ctx)
+
+        # Intercept compound learning statements (e.g., contains 'and' / 'or') 
+        # and parse them into individual simple facts before teaching.
+        if any(conj in ctx.resolved.lower() for conj in (" and ", " or ")):
+            sub_sentences = self._split_compound_sentence(ctx.resolved)
+            
+            # Verify if these split segments actually look like facts 
+            # (i.e. we can successfully detect a valid triple in at least one)
+            valid_triples = []
+            for sub in sub_sentences:
+                clean_sub = sub.replace("cannot", "can not")
+                triple = self.rel_det.detect(clean_sub)
+                if triple and triple.subject not in ("unknown", ""):
+                    valid_triples.append((sub, triple))
+            
+            # If we successfully isolated individual facts, teach them sequentially
+            if valid_triples:
+                responses = []
+                for sub_text, triple in valid_triples:
+                    # Create a mini pipeline context for each clean, simple sentence
+                    sub_ctx = PipelineContext(raw=sub_text, resolved=sub_text)
+                    sub_ctx.triple = triple
+                    sub_ctx.intent = ctx.intent
+                    responses.append(self._run_teach(sub_ctx))
+                
+                # Merge the sequential learning responses
+                combined_response = "\n\n".join(responses)
+                self._record(ctx, combined_response)
+                return combined_response
+
         self.personality.update("greeted")
         response = self.basic_conv.get_casual_response(ctx.resolved)
         self._record(ctx, response)
@@ -228,12 +356,26 @@ class ExecutiveController:
                 return response
 
         # 3. Five-layer brain pipeline (graph traversal)
-        sentence = self.brain.parse(ctx.resolved)
+            sentence = self.brain.parse(ctx.resolved)
+
         if sentence.subject in ("you", "i", "me"):
             sentence.subject = SELF
 
-        results  = self.brain.planner.plan_and_execute(sentence)
-        response = self.brain.answer_gen.generate(results, ctx.resolved)
+        results = self.brain.planner.plan_and_execute(sentence)
+
+        facts = []
+
+        for result in results:
+            if result.found:
+                facts.extend(result.facts)
+
+        response = self.response_generator.generate(
+            reasoning=self.reasoning_engine.last_result,
+            plan=self.last_plan,
+            facts=facts,
+            personality=self.personality.mood_suffix
+        )
+
 
         # 4. Nothing found — ask to be taught
         if not (results and results[0].found):
@@ -296,6 +438,23 @@ class ExecutiveController:
         s = triple.subject.rstrip(":")
         r = triple.relation
         o = triple.object_
+
+        validation = self.validator.validate(
+            s,
+            r,
+            o
+        )
+
+        if not validation.valid:
+
+            response = (
+                f"I couldn't store that information.\n"
+                f"Reason: {validation.reason}"
+            )
+
+            self._record(ctx, response)
+
+            return response
         ctx.topic = s
 
         conflict = self.contra.check_and_store(s, r, o,
@@ -385,9 +544,22 @@ class ExecutiveController:
 
     def export(self) -> dict:
         return {
-            "working_memory":      self.wm.export(),
-            "semantic_memory":     self.sem.export(),
+            "working_memory": self.wm.export(),
+            "semantic_memory": self.sem.export(),
             "contradiction_stats": self.contra.stats(),
-            "curiosity_stats":     self.curiosity.stats(),
-            "personality":         self.personality.export(),
+            "curiosity_stats": self.curiosity.stats(),
+            "personality": self.personality.export(),
+        }
+
+    def cognitive_status(self):
+        thought = self.reasoning_engine.last_result
+
+        if not thought:
+            return "No reasoning performed."
+
+        return {
+            "thought": thought.explanation,
+            "goal": thought.action,
+            "confidence": thought.confidence,
+            "plan": self.last_plan,
         }

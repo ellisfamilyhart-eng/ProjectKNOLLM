@@ -35,13 +35,23 @@ class Intent:
     CLARIFY      = 7
     DEFINITION   = 8
     EXAMPLE      = 9
-    UNKNOWN      = 10
+    ABILITY      = 10
+    UNKNOWN      = 11
 
     _NAMES = {
-        0: "CHAT", 1: "QUESTION", 2: "TEACH", 3: "MEMORY_QUERY",
-        4: "IDENTITY", 5: "COMMAND", 6: "WEB_REQUEST", 7: "CLARIFY",
-        8: "DEFINITION", 9: "EXAMPLE", 10: "UNKNOWN",
-    }
+    0:"CHAT",
+    1:"QUESTION",
+    2:"TEACH",
+    3:"MEMORY_QUERY",
+    4:"IDENTITY",
+    5:"COMMAND",
+    6:"WEB_REQUEST",
+    7:"CLARIFY",
+    8:"DEFINITION",
+    9:"EXAMPLE",
+    10:"ABILITY",
+    11:"UNKNOWN",
+}
 
     @classmethod
     def name(cls, code: int) -> str:
@@ -52,6 +62,7 @@ class Intent:
 class IntentResult:
     code:       int             # Intent.* constant
     confidence: float = 1.0    # how certain we are (rule-based = always 1.0)
+    intent:     str   = ""     # intent added
     subject:    str   = ""     # extracted subject if present
     predicate:  str   = ""     # extracted verb/relation phrase
     object_:    str   = ""     # extracted object / value
@@ -79,6 +90,30 @@ _QUESTION_STARTERS = frozenset([
     "is","are","do","does","did","can","could","will","would",
     "should","have","has","may","might",
 ])
+
+# ── Ability questions ───────────────────────────────────────
+
+ABILITY_VERBS = {
+    "count",
+    "read",
+    "write",
+    "learn",
+    "remember",
+    "forget",
+    "reason",
+    "think",
+    "talk",
+    "speak",
+    "crawl",
+    "search",
+    "calculate",
+    "draw",
+    "create",
+    "code",
+    "program",
+    "explain",
+    "answer",
+}
 
 # --- Memory queries (checked before generic question) ---
 _MEMORY_EXACT = frozenset([
@@ -224,7 +259,43 @@ class IntentClassifier:
                 value = m.group(1).strip() if m.lastindex else ""
                 return IntentResult(Intent.IDENTITY, object_=value, raw=raw)
 
-        # ── 6. Definition ────────────────────────────────────────────
+        # ── 6. Definition & Colon Fact Parsing ────────────────────────────
+        # First check if the user is using the custom teaching format "subject: definition/fact"
+        if ":" in raw:
+            parts = raw.split(":", 1)
+            subj = parts[0].strip()
+            fact_body = parts[1].strip()
+            
+            # Clean up relation/copula words to extract subject, predicate, and object
+            # e.g., "is a", "is the", "are", "has the property"
+            relation_match = re.match(
+                r"^(is\s+a|is\s+the|is|are|means|has\s+the\s+property|refers\s+to|defines)\s+(.+)$", 
+                fact_body, 
+                re.IGNORECASE
+            )
+            
+            if relation_match:
+                pred = relation_match.group(1).strip().lower()
+                obj = relation_match.group(2).strip()
+            else:
+                pred = "is_a"
+                obj = fact_body
+
+            # Strip leading articles from object to keep node names clean in the Knowledge Graph
+            noise_words = ["the ", "a ", "an "]
+            for word in noise_words:
+                if obj.lower().startswith(word):
+                    obj = obj[len(word):]
+
+            return IntentResult(
+                Intent.TEACH, 
+                subject=subj, 
+                predicate=pred, 
+                object_=obj, 
+                raw=raw
+            )
+
+        # Fallback to standard definition regex patterns if no colon is present
         for pattern in _DEFINITION_PATTERNS:
             m = pattern.match(raw.strip())
             if m:
@@ -255,7 +326,20 @@ class IntentClassifier:
         # ── 9. Clarification ─────────────────────────────────────────
         if clean in _CLARIFY_EXACT:
             return IntentResult(Intent.CLARIFY, object_=clean, raw=raw)
+        if (
+            len(words) >= 3
+            and words[0] == "can"
+            and words[1] == "you"
+        ):
+            verb = words[2]
 
+            if verb in ABILITY_VERBS:
+
+                return IntentResult(
+                    Intent.ABILITY,
+                    subject=verb,
+                    raw=raw
+                )
         # ── 10. Question ─────────────────────────────────────────────
         if raw.strip().endswith("?") or words[0] in _QUESTION_STARTERS:
             subj, obj = self._extract_question_focus(words)

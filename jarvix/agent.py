@@ -10,12 +10,16 @@ Five new modules wired in:
 import json
 import os
 
+
+from .thought import ThoughtEngine
+from .thought_consolidator import ThoughtConsolidator
 from .config            import STORAGE_CONFIG, BEHAVIOR_CONFIG, AGENT_METADATA
 from .memory_store      import MemoryStore, STAGE_MASTERED
 from .brain             import Brain, CURIOSITY_THRESHOLD, MAX_REASONING_DEPTH
 from .working_memory    import WorkingMemory
 from .semantic_memory   import SemanticMemory
 from .logic_engine      import LogicEngine
+from .input_parser      import InputParser
 from .contradiction_detector import ContradictionDetector
 from .confidence_manager     import ConfidenceManager
 from .curiosity_engine       import CuriosityEngine
@@ -36,19 +40,42 @@ from .predictive_engine      import PredictiveEngine, PredictionError
 from .dreaming_engine        import DreamingEngine
 from .inner_voice            import InnerVoice
 from .response_generator     import ResponseGenerator
+from .knowledge_validator    import KnowledgeValidator
+from .ability_brain          import AbilityBrain
+from .cognitive_space import CognitiveSpace3D, Vector3D, ThoughtNode
+from .cortex import Cortex
+
+import logging
+logger = logging.getLogger(__name__)
+
 
 
 class Jarvix:
     """Jarvix v6.0 — Predictive + Dreaming + Inner Voice architecture."""
-
     def __init__(self, data_file=None):
+        # 1. Keep your existing modules
+  
+        self.episodic_memory = EpisodicMemory()
+        
+        
+        # 2. Add CognitiveSpace3D as the central hub
+        self.cognitive_space = CognitiveSpace3D()
         # ── Core memory ────────────────────────────────────────────
         self.memory = MemoryStore(data_file=data_file)
-        self.brain  = Brain(self.memory)
-
+        self.brain  = Brain(self.memory)   # Move this UP so it exists first!
+        self.cortex = Cortex(self)
+        self.ability = AbilityBrain(self)  # Now AbilityBrain can safely bind to self.brain
+        self.consolidator = ThoughtConsolidator(self.memory)
+        
+        
         # ── Cognitive architecture ─────────────────────────────────
-        self.working_memory  = WorkingMemory(max_turns=100)
+        self.input_parser = InputParser()
+        self.working_memory = WorkingMemory(max_turns=BEHAVIOR_CONFIG["working_memory_max_turns"])
+        self.thought_engine = ThoughtEngine()
         self.semantic_memory = SemanticMemory()
+        self.knowledge_validator = KnowledgeValidator(
+            self.semantic_memory
+        )
         self.logic_engine    = LogicEngine(self.semantic_memory)
         self.contradiction   = ContradictionDetector(self.semantic_memory)
         self.confidence_mgr  = ConfidenceManager()
@@ -92,7 +119,8 @@ class Jarvix:
         self.ec.set_agent(self)
 
         # ── Three-tier memory ──────────────────────────────────────
-        self.episodic_memory   = EpisodicMemory()
+   
+        # ── Three-tier memory ──────────────────────────────────────
         self.vocabulary        = Vocabulary()
         self.neural_learner    = NeuralLearner(self.memory, feature_size=64)
         self.reflection_engine = ReflectionEngine(
@@ -157,12 +185,33 @@ class Jarvix:
     # PRIMARY ENTRY POINT
     # ================================================================
 
+    # ================================================================
+    # PRIMARY ENTRY POINT
+    # ================================================================
+
     def process_input(self, raw: str) -> str:
         if not raw or not raw.strip():
             return "I'm listening — go ahead!"
+        raw = raw.strip()
+
+        # -------------------------------------------------
+        # Ability Brain
+        # -------------------------------------------------
+
+        if self.ability.can_handle(raw):
+            result = self.ability.execute(raw)
+            if result is not None:
+                return result
 
         self.interaction_count         += 1
         self.memory.total_interactions += 1
+
+        # ── 3D Cognitive Space: Perturb & Spread Activation ─────────
+        for word in raw.lower().split():
+            if hasattr(self.cognitive_space, "nodes") and word in self.cognitive_space.nodes:
+                self.cognitive_space.inject_energy(word, energy=2.0)
+
+        self.cognitive_space.spread_activation(steps=2, damping=0.6)
 
         # ── InnerVoice pre-process: predict + find spelling variants ─
         ctx_topic    = self.working_memory.state.current_topic or ""
@@ -177,22 +226,53 @@ class Jarvix:
             except Exception:
                 pass
 
-        voice_ctx = self.inner_voice.pre_process(
+        pre_voice_ctx = self.inner_voice.pre_process(
             raw.strip(), ctx_topic=ctx_topic, last_intent=last_intent)
 
-        # ── Executive controller: main pipeline ────────────────────
+        # ------------------------------------------------
+        # Thought Engine & Cortex
+        # ------------------------------------------------
+
+        try:
+            if hasattr(self, "input_parser"):
+                parse_result = self.input_parser.parse(raw.strip())
+                self.thought_engine.think(parse_result)
+        except Exception:
+            pass
+
+        try:
+            cortex_result = self.cortex.awaken(raw)
+        except Exception:
+            cortex_result = None
+
+        # Executive Controller processes the input
         response = self.ec.process(raw.strip(), _agent=self)
 
+        # ── 3D Cognitive Space: Read active field & Decay ────────────
+        active_nodes = self.cognitive_space.get_active_neighborhood()
+        self.cognitive_space.decay_space()
+
         # ── InnerVoice post-process: measure error + refine ────────
-        actual_topic  = self.working_memory.state.current_topic or ""
+        actual_topic   = self.working_memory.state.current_topic or ""
         triples_learned = []
         if hasattr(self.ec, "_last_triples"):
             triples_learned = self.ec._last_triples
 
+        current_intent = -1
+        if self.working_memory.turns:
+            current_turn = self.working_memory.turns[-1]
+            try:
+                from .intent_classifier import Intent
+                current_intent = next(
+                    (v for k, v in Intent._NAMES.items()
+                     if v == current_turn.intent), -1)
+            except Exception:
+                pass
+
         voice_ctx = self.inner_voice.post_process(
-            actual_topic  = actual_topic,
-            actual_intent = last_intent,
-            response_found= "don't know" not in response.lower(),
+            actual_topic   = actual_topic,
+            actual_intent  = current_intent,
+            response_found = "don't know" not in response.lower(),
             triples_learned = triples_learned,
         )
 
@@ -206,7 +286,7 @@ class Jarvix:
             self.neural_learner.learn_topic_pattern(topic, raw[:50], 0.6)
             self.episodic_memory.record_episode(raw, response, {
                 "topic":          topic,
-                "pred_error":     round(voice_ctx.prediction_error, 3),
+                "pred_error":      round(voice_ctx.prediction_error, 3),
                 "spelling_fixed": voice_ctx.spelling_corrected,
             })
 
@@ -224,7 +304,6 @@ class Jarvix:
             self._run_dream_cycle()
 
         return response
-
     # ================================================================
     # DREAMING (background)
     # ================================================================
@@ -382,7 +461,7 @@ class Jarvix:
                     net.bias    = wd.get("bias",    net.bias)
                     self.neural_learner.topic_networks[topic] = net
         except Exception as e:
-            print(f"Note: could not load flat state: {e}")
+            logger.debug(f"Note: could not load flat state: {e}")
 
         graph_path = self.memory.data_file.replace(".json", "_graph.json")
         if os.path.exists(graph_path):
@@ -406,7 +485,7 @@ class Jarvix:
                 if "predictive_engine" in sem_data:
                     self.predictive_engine.import_state(sem_data["predictive_engine"])
             except Exception as e:
-                print(f"Note: could not load semantic state: {e}")
+                logger.debug(f"Note: could not load semantic state: {e}")
 
     def _neural_data(self) -> dict:
         return {

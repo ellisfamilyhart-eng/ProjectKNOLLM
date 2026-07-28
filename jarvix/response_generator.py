@@ -1,177 +1,211 @@
 """
-Jarvix NoLLM - Response Generator Module (Updated for Enhanced Conversation)
-Generates personality-rich responses based on learning state and conversation context
+Jarvix NoLLM
+Response Generator v3
+
+Creates final user-facing responses with improved natural language and variability.
+
+It does not reason or search memory.
+It receives:
+- reasoning result
+- plan
+- knowledge (facts)
+- personality hints
+
+and turns them into language.
 """
 
-from .config import LEARNING_CONFIG
+
+import random
+from typing import List, Optional, Union, Dict, Any
+
 
 class ResponseGenerator:
-    """
-    Generates responses with personality based on:
-    - Emotional state
-    - Prediction vs reality
-    - Surprise level
-    - Generated questions
-    - Conversation context (NEW)
-    """
-    
-    EMOTION_MESSAGES = {
-        'excited': "Wow! That's surprising!",
-        'curious': "Hmm, that's interesting...",
-        'thinking': "Let me think about that...",
-        'bored': "I see.",
-    }
-    
-    @staticmethod
-    def generate_response(emotion, prediction, fact, surprise, questions, stats, 
-                         conversation_manager=None):
-        """
-        Generate a complete response with all components.
-        Enhanced with contextual conversation when available.
-        """
-        lines = []
-        
-        # Use enhanced conversation for opening if available
-        if conversation_manager:
-            try:
-                context = {
-                    'surprise': surprise,
-                    'fact': fact,
-                    'topic': stats.get('topic', 'that'),
-                    'emotion': emotion,
-                }
-                opening = conversation_manager.generate_contextual_response(
-                    stats.get('topic', 'that'),
-                    context=context
-                )
-                lines.append(opening)
-            except Exception as e:
-                # Fallback if enhancement fails
-                reaction = ResponseGenerator.EMOTION_MESSAGES.get(emotion, "Interesting.")
-                lines.append(reaction)
+
+    def __init__(self):
+        self.responses_generated = 0
+
+        # Templates for different actions when facts are present
+        self.lookup_templates = [
+            "Based on what I know: {facts}",
+            "Here's what I found: {facts}",
+            "According to my knowledge: {facts}",
+            "From my memory: {facts}",
+            "This is what I recall: {facts}",
+        ]
+
+        self.store_templates = [
+            "Got it! I've learned that {facts}",
+            "Okay, I'll remember that {facts}",
+            "Thanks for teaching me: {facts}",
+            "I've stored this information: {facts}",
+            "Noted: {facts}",
+        ]
+
+        self.respond_templates = [
+            "{facts}",
+            "Here's what I think: {facts}",
+            "Based on my understanding: {facts}",
+            "Let me share what I know: {facts}",
+        ]
+
+        self.greet_templates = [
+            "Hello! {facts}",
+            "Hi there! {facts}",
+            "Hey! {facts}",
+            "Greetings! {facts}",
+        ]
+
+        self.empathize_templates = [
+            "I understand how you feel. {facts}",
+            "That sounds tough. {facts}",
+            "I'm here for you. {facts}",
+            "I hear you. {facts}",
+        ]
+
+        # Templates for when no facts are available
+        self.unknown_templates = [
+            "I'm not sure about that yet. Could you teach me?",
+            "I don't have information on that topic. Would you like to share what you know?",
+            "I'm still learning about this. Can you help me understand?",
+            "I haven't learned about this yet. Please explain?",
+            "I don't know the answer, but I'm eager to learn from you.",
+        ]
+
+        # Fallback templates
+        self.fallback_templates = [
+            "I'm not sure how to respond to that.",
+            "Let me think about that...",
+            "That's interesting. Tell me more?",
+            "I'm still processing that. Can you clarify?",
+        ]
+
+    def _format_facts(self, facts: List[Any]) -> str:
+        """Convert a list of facts into a natural language string."""
+        if not facts:
+            return ""
+
+        # Convert facts to strings if they aren't already
+        fact_strings = []
+        for fact in facts:
+            if isinstance(fact, dict):
+                # Expecting keys: subject, relation, object
+                subj = fact.get('subject', '')
+                rel = fact.get('relation', '')
+                obj = fact.get('object', '')
+                if subj and rel and obj:
+                    # Make the relation more natural
+                    rel_phrase = self._relation_to_phrase(rel)
+                    if rel_phrase:
+                        fact_strings.append(f"{subj} {rel_phrase} {obj}")
+                    else:
+                        fact_strings.append(f"{subj} {rel} {obj}")
+                else:
+                    fact_strings.append(str(fact))
+            else:
+                fact_strings.append(str(fact))
+
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_facts = []
+        for f in fact_strings:
+            if f not in seen:
+                seen.add(f)
+                unique_facts.append(f)
+
+        # Format the list naturally
+        if len(unique_facts) == 1:
+            return unique_facts[0]
+        elif len(unique_facts) == 2:
+            return f"{unique_facts[0]} and {unique_facts[1]}"
         else:
-            # Fallback to original emotion messages
-            reaction = ResponseGenerator.EMOTION_MESSAGES.get(emotion, "Interesting.")
-            lines.append(reaction)
-        
-        # Prediction vs reality
-        if prediction:
-            lines.append(f"\nI thought: '{prediction}'")
-            lines.append(f"But you said: '{fact}'")
-            lines.append(f"Surprise level: {surprise:.2f}")
+            # Oxford comma
+            return ", ".join(unique_facts[:-1]) + f", and {unique_facts[-1]}"
+
+    def _relation_to_phrase(self, relation: str) -> str:
+        """Convert a relation token to a natural language phrase."""
+        # Map relations to more natural phrases
+        relation_map = {
+            "is_a": "is a",
+            "instance_of": "is an example of",
+            "has_property": "has the property",
+            "has": "has",
+            "can": "can",
+            "causes": "causes",
+            "part_of": "is part of",
+            "definition": "means",
+            "named": "is named",
+            "located_in": "is located in",
+            "produced_by": "is produced by",
+            "synonym_of": "is the same as",
+            "opposite_of": "is the opposite of",
+            "related_to": "is related to",
+            "does": "does",
+        }
+        return relation_map.get(relation, relation)
+
+    def _select_template(self, templates: List[str]) -> str:
+        """Select a random template from a list."""
+        return random.choice(templates) if templates else "{}"
+
+    def generate(
+        self,
+        reasoning=None,
+        plan=None,
+        facts=None,
+        personality=None
+    ) -> str:
+        self.responses_generated += 1
+
+        facts = facts or []
+        personality_suffix = personality() if callable(personality) else (personality or "")
+
+        # Format facts into a natural language string
+        facts_str = self._format_facts(facts)
+
+        # Determine the action from reasoning
+        action = "RESPOND"  # default
+        if reasoning and hasattr(reasoning, 'action'):
+            action = reasoning.action
+
+        # Choose template set based on action
+        if action == "LOOKUP":
+            templates = self.lookup_templates
+        elif action == "STORE_FACT":
+            templates = self.store_templates
+        elif action == "GREET":
+            templates = self.greet_templates
+        elif action == "EMPATHIZE":
+            templates = self.empathize_templates
+        elif action == "RESPOND":
+            templates = self.respond_templates
         else:
-            lines.append(f"\nThis is completely new to me!")
-            lines.append(f"I'm learning about a new concept for the first time.")
-        
-        # Learning confirmation
-        confidence_gain = min(1.0, (surprise + 0.3) * LEARNING_CONFIG['overcompensation'])
-        lines.append(f"\n[Learning] Stored with confidence {confidence_gain:.2f}")
-        
-        # Questions
-        if questions:
-            lines.append(f"\n[Curiosity] I need to know more:")
-            for i, q in enumerate(questions, 1):
-                lines.append(f"  {i}. {q}")
-        
-        # Statistics
-        lines.append(f"\n[Status] I now know {stats['total_facts']} facts "
-                    f"across {stats['topics_known']} topics.")
-        lines.append(f"[Mood] {emotion.title()}")
-        
-        # Enhanced conversation status
-        if conversation_manager:
-            try:
-                lines.append(f"[Flow] Conversation: {conversation_manager.get_conversation_flow_score():.1%}")
-                lines.append(f"[Engagement] {conversation_manager.engagement_level:.1%}")
-            except:
-                pass
-        
-        return "\n".join(lines)
-    
+            # For any other action, use respond templates as fallback
+            templates = self.respond_templates
+
+        # If we have facts, use the selected template set
+        if facts_str:
+            template = self._select_template(templates)
+            response = template.format(facts=facts_str)
+        else:
+            # No facts: use unknown or fallback templates
+            if action in ["LOOKUP", "RESPOND"]:
+                response = self._select_template(self.unknown_templates)
+            else:
+                response = self._select_template(self.fallback_templates)
+
+        # Append personality suffix if available
+        if personality_suffix:
+            # Ensure proper spacing
+            if not response.endswith((' ', '\n')):
+                response += " "
+            response += personality_suffix
+
+        return response
+
+    # Static helper for memory dump (unchanged)
     @staticmethod
-    def generate_summary(agent):
-        """Generate a session summary"""
-        stats = agent.get_stats()
-        
-        lines = [
-            "\n" + "=" * 60,
-            "  SESSION SUMMARY",
-            "=" * 60,
-            f"\n📚 Topics learned: {stats['topics_known']}",
-            f"💾 Total facts: {stats['total_facts']}",
-            f"🎯 Interactions: {stats['total_interactions']}",
-            f"🧠 Current mood: {stats['emotional_state']}",
-            f"🔗 Associations: {stats['associations']}",
-            f"📋 Learning queue: {stats['learning_queue_size']}",
-        ]
-        
-        return "\n".join(lines)
-    
-    @staticmethod
-    def generate_status_report(memory):
-        """Generate detailed status report"""
-        stats = memory.get_statistics()
-        
-        lines = [
-            "\n" + "=" * 60,
-            "  AGENT STATUS REPORT",
-            "=" * 60,
-            f"\nName: Jarvix NoLLM",
-            f"Birth time: {stats['birth_time']}",
-            f"Total interactions: {stats['total_interactions']}",
-            f"Topics known: {stats['total_topics']}",
-            f"Total facts: {stats['total_facts']}",
-            f"Associations: {stats['associations_count']}",
-            f"Last save: {stats['last_save']}",
-        ]
-        
-        return "\n".join(lines)
-    
-    @staticmethod
-    def generate_memory_dump(memory, limit=5):
-        """Generate a view of current memory"""
-        lines = [
-            "\n" + "=" * 60,
-            "  MEMORY SNAPSHOT",
-            "=" * 60,
-        ]
-        
-        if not memory.facts:
-            lines.append("\n[Empty] No facts learned yet.")
-            return "\n".join(lines)
-        
-        for topic, facts in list(memory.facts.items())[:10]:
-            lines.append(f"\n[{topic}]")
-            
-            sorted_facts = sorted(facts.items(), key=lambda x: -x[1])[:limit]
-            for fact, conf in sorted_facts:
-                confidence_bar = "█" * int(conf * 10) + "░" * (10 - int(conf * 10))
-                lines.append(f"  • {fact} [{confidence_bar}] {conf:.2f}")
-        
-        return "\n".join(lines)
-    
-    @staticmethod
-    def generate_conversation_context(conversation_manager):
-        """Generate conversation context display"""
-        if not hasattr(conversation_manager, 'export_conversation'):
-            return "[No conversation context]"
-        
-        export = conversation_manager.export_conversation()
-        
-        lines = [
-            "\n" + "=" * 60,
-            "  CONVERSATION CONTEXT",
-            "=" * 60,
-            f"\nExchanges: {len(export['exchanges'])}",
-            f"Topics discussed: {', '.join(export['topics'][:5])}",
-            f"Engagement: {conversation_manager.engagement_level:.1%}",
-            f"Curiosity: {conversation_manager.curiosity_level:.1%}",
-        ]
-        
-        if hasattr(conversation_manager, 'personality_traits'):
-            lines.append(f"\n[Personality Traits]")
-            for trait, value in sorted(conversation_manager.personality_traits.items(), 
-                                      key=lambda x: -x[1])[:3]:
-                lines.append(f"  {trait}: {value:.1%}")
-        
-        return "\n".join(lines)
+    def generate_memory_dump(memory):
+        return (
+            f"Memory contains "
+            f"{len(memory.facts)} topics.\n"
+        )

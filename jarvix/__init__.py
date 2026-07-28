@@ -11,95 +11,172 @@ Support:   NeuralLearner + ReflectionEngine + Imagination + Vocabulary
 
 # Config
 from .config import (
-    LEARNING_CONFIG, BEHAVIOR_CONFIG, EMOTIONAL_STATES,
-    STORAGE_CONFIG, AGENT_METADATA,
+    LEARNING_CONFIG,
+    BEHAVIOR_CONFIG,
+    EMOTIONAL_STATES,
+    STORAGE_CONFIG,
+    AGENT_METADATA,
 )
 
-# Memory systems
-from .memory_store      import MemoryStore
-from .working_memory    import WorkingMemory, WorkingMemoryState, Turn
-from .semantic_memory   import SemanticMemory, SemanticEdge, SemanticNode
-from .episodic_memory   import EpisodicMemory
-from .vocabulary        import Vocabulary
+# Memory classification & core models
+from .memory_classifier import MemoryClassifier, MemoryClassification
+from .neural_learner import NeuralLearner, TinyBrain
+from .reflection import ReflectionEngine
+from .memory_linker import MemoryLinker
+from .memory_models import Memory, MemoryType
+from .memory_manager import MemoryManager
+from .memory_store import MemoryStore
+from .memory_sorter import (
+    MemoryOrganizer,
+    sort_facts_by_confidence,
+    sort_facts_by_importance,
+    sort_facts_by_stage,
+    sort_facts_by_support,
+    sort_nodes_by_degree,
+    sort_nodes_by_centrality,
+    sort_edges_by_confidence,
+)
+from .working_memory import WorkingMemory, WorkingMemoryState, Turn
+from .semantic_memory import CognitiveMemoryNetwork as SemanticMemory, HyperEdge as SemanticEdge, CognitiveNode as SemanticNode
+from .episodic_memory import EpisodicMemory
+from .vocabulary import Vocabulary
 
 # Five-layer brain pipeline
-from .nlp_parser        import NLPParser, Sentence
-from .knowledge_graph   import KnowledgeGraph
-from .reasoner          import Reasoner
-from .planner           import Planner
-from .answer_generator  import AnswerGenerator
-from .brain             import Brain
+from .nlp_parser import NLPParser, Sentence
+from .knowledge_graph import KnowledgeGraph
+from .reasoner import Reasoner
+from .planner import Planner
+from .answer_generator import AnswerGenerator
+from .brain import Brain
 
 # Reasoning & learning
-from .logic_engine           import LogicEngine, InferenceRule, InferenceResult
+from .logic_engine import LogicEngine, InferenceRule, InferenceResult
 from .contradiction_detector import ContradictionDetector, Conflict, BeliefSet
-from .confidence_manager     import ConfidenceManager, FactRecord
-from .curiosity_engine       import CuriosityEngine, KnowledgeGap
+from .confidence_manager import ConfidenceManager, FactRecord
+from .curiosity_engine import CuriosityEngine, KnowledgeGap
 
 # Intent + relation pipeline
-from .intent_classifier  import IntentClassifier, IntentResult, Intent
-from .relation_detector  import RelationDetector, Triple
-from .command_engine     import CommandEngine, CommandResult
-from .context_builder    import ContextBuilder, BrainState, KnowledgeSummary
+from .intent_classifier import IntentClassifier, IntentResult, Intent
+from .relation_detector import RelationDetector, Triple
+from .command_engine import CommandEngine, CommandResult
+from .context_builder import ContextBuilder, BrainState, KnowledgeSummary
 
 # Executive controller (master loop)
-from .executive_controller   import ExecutiveController, PipelineContext
+from .executive_controller import ExecutiveController, PipelineContext
 
 # Web crawler
-from .web_crawler            import WebCrawler, CrawlReport, PageResult
+from .web_crawler import WebCrawler, CrawlReport, PageResult
 
-# Language
-from .parser                 import InputParser
-from .response_generator     import ResponseGenerator
-from .imagination            import Imagination
-from .conversation           import ConversationManager
-from .conversation_enhanced  import (
-    EnhancedConversationManager, ConversationDatabase, ConversationTemplate,
+# Language & Interaction
+from .parser import InputParser
+from .response_generator import ResponseGenerator
+from .imagination import Imagination
+from .conversation import ConversationManager
+from .conversation_enhanced import (
+    EnhancedConversationManager,
+    ConversationDatabase,
+    ConversationTemplate,
 )
-from .basic_conversation     import BasicConversationResponder
-from .recursive_learner      import RecursiveLearner
-from .question_answerer      import QuestionAnswerer
+from .basic_conversation import BasicConversationResponder
+from .recursive_learner import RecursiveLearner
+from .question_answerer import QuestionAnswerer
 
-from .personality_engine     import PersonalityEngine, Personality, EmotionState, Mood, ReplyStyle
-from .core_knowledge         import seed_agent, try_builtin_answer, SELF_FACTS, SEED_TRIPLES
+from .personality_engine import (
+    PersonalityEngine,
+    Personality,
+    EmotionState,
+    Mood,
+    ReplyStyle,
+)
+from .core_knowledge import (
+    seed_agent,
+    try_builtin_answer,
+    SELF_FACTS,
+    SEED_TRIPLES,
+)
 
-# Agent (top-level)
-from .agent                  import Jarvix
+# Imported last to avoid circular dependency with module components
+from .agent import Jarvix
+
+__version__ = "5.0.0"
 
 __all__ = [
-    # Top-level
+    # Top-level Agent
     "Jarvix",
     # Executive
-    "ExecutiveController", "PipelineContext",
+    "ExecutiveController",
+    "PipelineContext",
     # Intent + relation pipeline
-    "IntentClassifier", "IntentResult", "Intent",
-    "RelationDetector", "Triple",
-    "CommandEngine", "CommandResult",
-    "ContextBuilder", "BrainState", "KnowledgeSummary",
+    "IntentClassifier",
+    "IntentResult",
+    "Intent",
+    "RelationDetector",
+    "Triple",
+    "CommandEngine",
+    "CommandResult",
+    "ContextBuilder",
+    "BrainState",
+    "KnowledgeSummary",
     # Web crawler
-    "WebCrawler", "CrawlReport", "PageResult",
+    "WebCrawler",
+    "CrawlReport",
+    "PageResult",
     # Brain pipeline
-    "Brain", "NLPParser", "Sentence",
-    "KnowledgeGraph", "Reasoner", "Planner", "AnswerGenerator",
+    "Brain",
+    "NLPParser",
+    "Sentence",
+    "KnowledgeGraph",
+    "Reasoner",
+    "Planner",
+    "AnswerGenerator",
     # Memory
-    "MemoryStore", "WorkingMemory", "WorkingMemoryState", "Turn",
-    "SemanticMemory", "SemanticEdge", "SemanticNode",
-    "EpisodicMemory", "Vocabulary",
+    "MemoryStore",
+    "WorkingMemory",
+    "WorkingMemoryState",
+    "Turn",
+    "SemanticMemory",
+    "SemanticEdge",
+    "SemanticNode",
+    "EpisodicMemory",
+    "Vocabulary",
+    "MemoryOrganizer",
+    "sort_facts_by_confidence",
+    "sort_facts_by_importance",
+    "sort_facts_by_stage",
+    "sort_facts_by_support",
+    "sort_nodes_by_degree",
+    "sort_nodes_by_centrality",
+    "sort_edges_by_confidence",
     # Reasoning
-    "LogicEngine", "InferenceRule", "InferenceResult",
-    "ContradictionDetector", "Conflict", "BeliefSet",
-    "ConfidenceManager", "FactRecord",
-    "CuriosityEngine", "KnowledgeGap",
+    "LogicEngine",
+    "InferenceRule",
+    "InferenceResult",
+    "ContradictionDetector",
+    "Conflict",
+    "BeliefSet",
+    "ConfidenceManager",
+    "FactRecord",
+    "CuriosityEngine",
+    "KnowledgeGap",
     # Language
-    "InputParser", "ResponseGenerator", "Imagination",
-    "ConversationManager", "EnhancedConversationManager",
-    "ConversationDatabase", "ConversationTemplate",
-    "BasicConversationResponder", "RecursiveLearner", "QuestionAnswerer",
+    "InputParser",
+    "ResponseGenerator",
+    "Imagination",
+    "ConversationManager",
+    "EnhancedConversationManager",
+    "ConversationDatabase",
+    "ConversationTemplate",
+    "BasicConversationResponder",
+    "RecursiveLearner",
+    "QuestionAnswerer",
     # Neural
-    "NeuralLearner", "TinyBrain", "ReflectionEngine",
+    "NeuralLearner",
+    "TinyBrain",
+    "ReflectionEngine",
     # Config
-    "LEARNING_CONFIG", "BEHAVIOR_CONFIG", "EMOTIONAL_STATES",
-    "STORAGE_CONFIG", "AGENT_METADATA",
+    "LEARNING_CONFIG",
+    "BEHAVIOR_CONFIG",
+    "EMOTIONAL_STATES",
+    "STORAGE_CONFIG",
+    "AGENT_METADATA",
 ]
-
-__version__ = "5.1.0"
